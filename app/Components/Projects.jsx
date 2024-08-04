@@ -8,10 +8,10 @@ const projectsData = [
   {
     id: 1,
 
-    title: "Next.js Portfolio Website",
+    title: "Next.js Portfolio",
     technologies: "Next.js,React Form Hook,Node Mailer",
     description:
-      "I've crafted a clean and elegant portfolio website using Next.js, the powerful React framework. This website serves as a digital showcase of my work, skills, and experiences. Additionally, it features a contact form that allows anyone to easily get in touch with me via email.",
+      "I've crafted a clean and elegant portfolio website using Next.js, the powerful React framework. This website serves as a digital showcase of my work, skills, and experiences. Additionally, it features a contact form that allows anyone to easily get in touch with me via email. To ensure optimal performance and streamlined development, I've utilized Bun, the latest and most efficient package manager, for managing all project dependencies.",
     image: "/images/projects/1.png",
     tag: ["All", "Web"],
     gitUrl: "https://github.com/Chirag1905/Next-Portfolio.git",

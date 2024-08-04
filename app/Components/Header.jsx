@@ -30,8 +30,7 @@ const Header = () => {
           href={"/"}
           className="text-1xl md:text-4xl text-white font-semibold"
         >
-          {/* Chirag&apos;s Portfolio */}
-          E-commerce
+          Chirag&apos;s Portfolio
         </Link>
         <div className="mobile-menu block md:hidden">
           {!navbarOpen ? (

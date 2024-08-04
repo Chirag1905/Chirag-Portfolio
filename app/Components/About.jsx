@@ -8,23 +8,36 @@ const TAB_DATA = [
     title: "Skills",
     id: "skills",
     content: (
-      <ul className="grid grid-cols-2 gap-x-0 list-disc pl-4 w-full max-w-md">
-        <li>Next.js</li>
-        <li>React</li>
-        <li>Node.js</li>
-        <li>Express</li>
-        <li>JavaScript</li>
-        <li>MongoDB</li>
-        <li>MySql</li>
-        <li>Tailwind</li>
-      </ul>
+      <>
+        <ul className="grid grid-cols-1 gap-y-2 list-disc pl-4 w-full max-w-md">
+          <li>JavaScript/TypeScript</li>
+          <li>React Js/Next js</li>
+          <li>Node Js/Express Js</li>
+        </ul>
+        <br />
+        <ul className="grid grid-cols-1 gap-y-2 list-disc pl-4 w-full max-w-md">
+          <li>Bootstrap</li>
+          <li>Chakra UI</li>
+          <li>Tailwind</li>
+          <li>MongoDB</li>
+          <li>MySQL</li>
+          <li>PostgreSQL</li>
+        </ul>
+        <br />
+        <ul className="grid grid-cols-1 gap-y-2 list-disc pl-4 w-full max-w-md">
+          <li>MongoDB</li>
+          <li>MySQL</li>
+          <li>PostgreSQL</li>
+        </ul>
+      </>
     ),
   },
   {
     title: "Education",
     id: "education",
     content: (
-      <ul className="list-disc pl-2 max-w-md gap-8">
+      <ul className="grid grid-cols-1 gap-y-2 list-disc pl-4 w-full max-w-md">
+        {/* <ul className="list-disc pl-2 max-w-md gap-8"> */}
         <li>
           Bachelor Of Engineering Hashmukh Goswami College Of Engineering{" "}
           <b>(GTU) 7.45 CGPA</b>
@@ -42,11 +55,14 @@ const TAB_DATA = [
     title: "Certifications",
     id: "certifications",
     content: (
-      <ul className="list-disc pl-2 max-w-md gap-8">
-        <li>BrainyBeams Technology</li>
-        <li>JavaScript Algorithms and Data Structures freeCodeCamp</li>
-        <li>PHP Programming Course</li>
-      </ul>
+      <>
+        <ul className="grid grid-cols-1 gap-y-2 list-disc pl-4 w-full max-w-md">
+          <li>ChatGPT Workshop</li>
+          <li>BrainyBeams Technology</li>
+          <li>JavaScript Algorithms and Data Structures freeCodeCamp</li>
+          <li>PHP Programming Course</li>
+        </ul>
+      </>
     ),
   },
 ];
@@ -74,7 +90,7 @@ const About = () => {
         <div className="mt-4 md:mt-0 text-left flex flex-col h-full">
           <h2 className="text-4xl font-bold text-white mb-4">About Me</h2>
           <p className="text-base lg:text-lg">
-            I am a full stack web developer with a passion for creating
+            I am a Mern stack web developer with a passion for creating
             interactive and responsive web applications. I have experience
             working with{" "}
             <b>

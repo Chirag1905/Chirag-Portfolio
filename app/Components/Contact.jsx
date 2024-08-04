@@ -53,7 +53,7 @@ const Contact = () => {
             <Link href="https://github.com/Chirag1905?tab=repositories">
               <Image src={GithubIcon} alt="Github Icon" />
             </Link>
-            <Link href="https://www.linkedin.com/in/chirag-vadhvana-7586ab225">
+            <Link href="https://www.linkedin.com/in/chirag-vadhavana-7586ab225">
               <Image src={LinkedinIcon} alt="Linkedin Icon" />
             </Link>
           </div>

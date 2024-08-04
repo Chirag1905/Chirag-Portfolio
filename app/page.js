@@ -6,17 +6,19 @@ import Projects from "./Components/Projects";
 import Contact from "./Components/Contact";
 import Footer from "./Components/Footer";
 
-import dynamic from 'next/dynamic';
-import 'react-toastify/dist/ReactToastify.css';
+import dynamic from "next/dynamic";
+import "react-toastify/dist/ReactToastify.css";
 
-const Achievements = dynamic(() => import('./Components/Achievements'), { ssr: false });
+const Achievements = dynamic(() => import("./Components/Achievements"), {
+  ssr: false,
+});
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col bg-[#121212]">
+    <main className="flex min-h-screen flex-col bg-[#000000]">
       <Navbar />
       <div className="container mt-24 mx-auto px-12 py-4">
         <Dashboard />
-        <Achievements/>
+        <Achievements />
         <Projects />
         <About />
         <Contact />

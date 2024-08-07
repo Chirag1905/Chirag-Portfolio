@@ -37,7 +37,7 @@ const Dashboard = () => {
             />
           </h1>
           <p className="text-[#ADB7BE] text-base sm:text-lg mb-6 lg:text-xl">
-          Hi, My Name is Chirag and I am a Passionate
+            Hi, My Name is Chirag and I am a Passionate
           </p>
           <div>
             <Link
@@ -47,8 +47,9 @@ const Dashboard = () => {
               Hire Me
             </Link>
             <Link
-              // href="Resume_C.pdf" download="Resume_C.pdf"
-              href="JavaScript _ Mern Stack Developer.pdf" download="JavaScript _ Mern Stack Developer.pdf"
+              // href="Resume_Chirag.pdf" download="JavaScript _ Mern Stack Developer.pdf"
+              href="Chirag_Resume.pdf"
+              download="Chirag_Resume.pdf"
               className="px-1 inline-block py-1 w-full sm:w-fit rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 hover:bg-slate-800 text-white mt-3"
             >
               <span className="block bg-[#121212] hover:bg-slate-800 rounded-full px-5 py-2">
@@ -63,7 +64,7 @@ const Dashboard = () => {
           transition={{ duration: 0.5 }}
           className="col-span-4 place-self-center mt-4 lg:mt-0"
         >
-          <div className="rounded-full bg-[#181818] w-[250px] h-[250px] lg:w-[400px] lg:h-[400px] relative">
+          <div className="rounded-full bg-[#000000] w-[250px] h-[250px] lg:w-[400px] lg:h-[400px] relative">
             <Image
               // src="/images/hero-image.png"
               src="/images/hero-image2-removebg.png"

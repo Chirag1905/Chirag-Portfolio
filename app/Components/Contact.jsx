@@ -4,33 +4,37 @@ import GithubIcon from "../../public/github-icon.svg";
 import LinkedinIcon from "../../public/linkedin-icon.svg";
 import Link from "next/link";
 import Image from "next/image";
-import { useForm } from 'react-hook-form';
+import { useForm } from "react-hook-form";
 import { toast, ToastContainer } from "react-toastify";
 
 const Contact = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const onSubmit = async (data) => {
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
+      const response = await fetch("/api/contact", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
-      
+
       const result = await response.json();
-      console.log("🚀 ~ onSubmit ~ result:", result)
-      
+      console.log("🚀 ~ onSubmit ~ result:", result);
+
       if (result?.status === 200) {
-        toast(result?.message)
-        console.log('Message sent successfully');
+        toast(result?.message);
+        console.log("Message sent successfully");
       } else {
-        console.error('Failed to send message:', result.error);
+        console.error("Failed to send message:", result.error);
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
 
@@ -46,8 +50,10 @@ const Contact = () => {
           <h5 className="text-xl font-bold text-white my-2">
             Let&apos;s Connect
           </h5>
-          <p className="text-[#ADB7BE] mb-4 max-w-md">
-            I&apos;m currently looking for new opportunities, my inbox is always open. Whether you have a question or just want to say hi, I&apos;ll try my best to get back to you!
+          <p className="text-[#ADB7BE] text-justify mb-4 max-w-md">
+            I&apos;m currently looking for new opportunities, my inbox is always
+            open. Whether you have a question or just want to say hi, I&apos;ll
+            try my best to get back to you!
           </p>
           <div className="socials flex flex-row gap-2">
             <Link href="https://github.com/Chirag1905?tab=repositories">
@@ -61,7 +67,10 @@ const Contact = () => {
         <div className="z-10">
           <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-6">
-              <label htmlFor="email" className="text-white block mb-2 text-sm font-medium">
+              <label
+                htmlFor="email"
+                className="text-white block mb-2 text-sm font-medium"
+              >
                 Your email
               </label>
               <input
@@ -80,7 +89,10 @@ const Contact = () => {
               {errors.email && <p>{errors.email.message}</p>}
             </div>
             <div className="mb-6">
-              <label htmlFor="subject" className="text-white block text-sm mb-2 font-medium">
+              <label
+                htmlFor="subject"
+                className="text-white block text-sm mb-2 font-medium"
+              >
                 Subject
               </label>
               <input
@@ -93,7 +105,10 @@ const Contact = () => {
               {errors.subject && <p>{errors.subject.message}</p>}
             </div>
             <div className="mb-6">
-              <label htmlFor="message" className="text-white block text-sm mb-2 font-medium">
+              <label
+                htmlFor="message"
+                className="text-white block text-sm mb-2 font-medium"
+              >
                 Message
               </label>
               <textarea
@@ -105,7 +120,10 @@ const Contact = () => {
               />
               {errors.message && <p>{errors.message.message}</p>}
             </div>
-            <button type="submit" className="bg-primary-500 hover:bg-primary-600 text-white font-medium py-2.5 px-5 rounded-lg w-full">
+            <button
+              type="submit"
+              className="bg-primary-500 hover:bg-primary-600 text-white font-medium py-2.5 px-5 rounded-lg w-full"
+            >
               Send Message
             </button>
           </form>

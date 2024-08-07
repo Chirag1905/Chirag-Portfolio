@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import NavLink from "./NavLink";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import MenuOverlay from "./MenuOverlay";
+import Theme from "./Theme";
 
 const navLinks = [
   {
@@ -24,11 +25,11 @@ const Header = () => {
   const [navbarOpen, setNavbarOpen] = useState(false);
 
   return (
-    <nav className="fixed mx-auto border border-[#33353F] top-0 left-0 right-0 z-10 bg-[#000000] bg-opacity-100">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-black bg-opacity-100">
       <div className="flex container lg:py-4 flex-wrap items-center justify-between mx-auto px-4 py-2">
         <Link
           href={"/"}
-          className="text-1xl md:text-4xl text-white font-semibold"
+          className="text-1xl md:text-4xl text-black dark:text-white font-semibold"
         >
           Chirag&apos;s Portfolio
         </Link>
@@ -36,14 +37,14 @@ const Header = () => {
           {!navbarOpen ? (
             <button
               onClick={() => setNavbarOpen(true)}
-              className="flex items-center px-3 py-2 border rounded border-slate-200 text-slate-200 hover:text-white hover:border-white"
+              className="flex items-center px-3 py-2 border rounded border-slate-200 text-slate-800 dark:text-slate-200 hover:text-black dark:hover:text-white hover:border-black dark:hover:border-white"
             >
               <Bars3Icon className="h-5 w-5" />
             </button>
           ) : (
             <button
               onClick={() => setNavbarOpen(false)}
-              className="flex items-center px-3 py-2 border rounded border-slate-200 text-slate-200 hover:text-white hover:border-white"
+              className="flex items-center px-3 py-2 border rounded border-slate-200 text-slate-800 dark:text-slate-200 hover:text-black dark:hover:text-white hover:border-black dark:hover:border-white"
             >
               <XMarkIcon className="h-5 w-5" />
             </button>
@@ -58,6 +59,7 @@ const Header = () => {
             ))}
           </ul>
         </div>
+        <Theme />
       </div>
       {navbarOpen ? <MenuOverlay links={navLinks} /> : null}
     </nav>

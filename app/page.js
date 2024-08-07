@@ -1,6 +1,5 @@
 import Navbar from "./Components/Header";
 import Dashboard from "./Components/Dashboard";
-// import Achievements from "./Components/Achievements";
 import About from "./Components/About";
 import Projects from "./Components/Projects";
 import Contact from "./Components/Contact";
@@ -14,7 +13,7 @@ const Achievements = dynamic(() => import("./Components/Achievements"), {
 });
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col bg-[#000000]">
+    <main className="flex min-h-screen flex-col bg-[#ffffff] dark:bg-[#000000]">
       <Navbar />
       <div className="container mt-24 mx-auto px-12 py-4">
         <Dashboard />

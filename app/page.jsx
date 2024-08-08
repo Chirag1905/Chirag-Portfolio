@@ -13,7 +13,7 @@ const Achievements = dynamic(() => import("./Components/Achievements"), {
 });
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col bg-[#ffffff] dark:bg-[#000000]">
+    <main className="flex min-h-screen flex-col bg-[#fffefe] dark:bg-[#121212]">
       <Navbar />
       <div className="container mt-24 mx-auto px-12 py-4">
         <Dashboard />

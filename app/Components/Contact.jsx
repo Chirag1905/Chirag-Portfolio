@@ -45,7 +45,7 @@ const Contact = () => {
         Contact Me
       </h2>
       <div className="grid md:grid-cols-2 mb-12 md:mb-12 pt-12 pb-24 gap-4 relative">
-        <div className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary-900 to-transparent rounded-full h-80 w-80 z-0 blur-lg absolute top-3/4 -left-4 transform -translate-x-1/2 -translate-1/2"></div>
+        <div className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary-400 dark:from-primary-900 to-transparent rounded-full h-80 w-80 z-0 blur-lg absolute top-3/4 -left-4 transform -translate-x-1/2 -translate-1/2"></div>
         <div className="z-10">
           <h5 className="text-xl font-bold text-black dark:text-white my-2">
             Let&apos;s Connect
@@ -67,7 +67,7 @@ const Contact = () => {
         <div className="z-10">
           <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-6">
-              <label  
+              <label
                 htmlFor="email"
                 className="text-black dark:text-white block mb-2 text-sm font-medium"
               >
@@ -83,7 +83,7 @@ const Contact = () => {
                     message: "Invalid email address",
                   },
                 })}
-                className="bg-[#e3e5ee] dark:bg-[#18191E] border border-[#cacee6] dark:border-[#33353F] placeholder-[#484b4e] dark:placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
+                className="bg-[#eee8e8] dark:bg-[#18191E] border border-[#cacee6] dark:border-[#33353F] placeholder-[#484b4e] dark:placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
                 placeholder="jacob@google.com"
               />
               {errors.email && <p>{errors.email.message}</p>}
@@ -99,7 +99,7 @@ const Contact = () => {
                 id="subject"
                 type="text"
                 {...register("subject", { required: "Subject is required" })}
-                className="bg-[#cfd3e7] dark:bg-[#18191E] border border-[#cacee6] dark:border-[#33353F] placeholder-[#484b4e] dark:placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
+                className="bg-[#eee8e8] dark:bg-[#18191E] border border-[#cacee6] dark:border-[#33353F] placeholder-[#484b4e] dark:placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
                 placeholder="Just saying hi"
               />
               {errors.subject && <p>{errors.subject.message}</p>}
@@ -115,7 +115,7 @@ const Contact = () => {
                 id="message"
                 name="message"
                 {...register("message", { required: "Message is required" })}
-                className="bg-[#cfd3e7] dark:bg-[#18191E] border border-[#cacee6] dark:border-[#33353F] placeholder-[#484b4e] dark:placeholder-[#9CA2A9] text-white dark:text-gray-100 text-sm rounded-lg block w-full p-2.5"
+                className="bg-[#eee8e8] dark:bg-[#18191E] border border-[#cacee6] dark:border-[#33353F] placeholder-[#484b4e] dark:placeholder-[#9CA2A9] text-white dark:text-gray-100 text-sm rounded-lg block w-full p-2.5"
                 placeholder="Let's talk about..."
               />
               {errors.message && <p>{errors.message.message}</p>}

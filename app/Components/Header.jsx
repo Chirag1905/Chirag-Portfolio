@@ -35,9 +35,9 @@ const Header = () => {
         </Link>
         
         {/* Theme toggle button positioned in the top-right corner */}
-        <div className="absolute right-10 top-1/2 transform -translate-y-1/2">
+        {/* <div className="absolute right-10 top-1/2 transform -translate-y-1/2">
           <Theme />
-        </div>
+        </div> */}
 
         <div className="mobile-menu block md:hidden">
           {!navbarOpen ? (
@@ -58,12 +58,13 @@ const Header = () => {
         </div>
 
         <div className="menu hidden md:block md:w-auto" id="navbar">
-          <ul className="flex p-5 md:p-0 md:flex-row md:space-x-8 mt-0">
+          <ul className="flex p-5 md:p-0 md:flex-row md:space-x-8 mt-0 items-center">
             {navLinks.map((link, index) => (
               <li key={index}>
                 <NavLink href={link.path} title={link.title} />
               </li>
             ))}
+          <Theme />
           </ul>
         </div>
       </div>

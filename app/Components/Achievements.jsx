@@ -33,15 +33,12 @@ const achievementsList = [
 const Achievements = () => {
   return (
     <div className="py-8 px-4 xl:gap-16 sm:py-16 xl:px-16">
-      <div className="bg-[#F4F4F4] dark:bg-[#121212] sm:border-[#eee8e8] dark:sm:border-[#191919] sm:border rounded-md py-8 px-16 flex flex-col sm:flex-row items-center justify-between">
+      <div className="bg-[#F4F4F4] dark:bg-[#151515] sm:border-[#eee8e8] dark:sm:border-[#191919] sm:border rounded-xl py-8 px-16 flex flex-col sm:flex-row items-center justify-between">
         {achievementsList.map((achievement, index) => {
           return (
-            <div
-              key={index}
-              className="flex flex-col items-center justify-center mx-4 my-4 sm:my-0"
-            >
+            <div key={index} className="flex flex-col items-center justify-center mx-4 my-4 sm:my-0">
               <h2 className="text-black dark:text-white text-4xl font-bold flex flex-row">
-                {achievement.prefix}
+                {/* {achievement.prefix} */}
                 <AnimatedNumbers
                   includeComma
                   animateToNumber={parseInt(achievement.value)}

@@ -3,6 +3,7 @@ import { useState, useRef, FC } from "react";
 import ProjectCard from "./ProjectCard";
 import ProjectTag from "./ProjectTag";
 import { motion, useInView } from "framer-motion";
+import ProjectModal from "./ProjectModal";
 
 interface ProjectItem {
   id: number;
@@ -102,40 +103,67 @@ const Projects: FC = () => {
     project.tag.includes(tag)
   );
 
-  const cardVariants = {
-    initial: { y: 50, opacity: 0 },
-    animate: { y: 0, opacity: 1 },
+  const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = (project: ProjectItem) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
   };
 
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedProject(null);
+  };
+
+
   return (
-    <section className="pt-16" id="projects">
-      <h2 className="text-center text-4xl font-bold text-black dark:text-white mt-4 mb-8 md:mb-12">
+    <section className="pt-10" id="projects">
+      <h2 className="text-center text-4xl font-bold text-black dark:text-white my-4">
         My Projects
       </h2>
 
       {/* Tags */}
-      <div className="text-black dark:text-white flex flex-row justify-center items-center gap-2 py-6">
-        {["All", "Web", "Mobile"].map((name) => (
-          <ProjectTag
-            key={name}
-            onClick={handleTagChange}
-            name={name}
-            isSelected={tag === name}
-          />
-        ))}
+      <div className="flex justify-center items-center pt-8 pb-10">
+        <div
+          className="
+    flex gap-2 px-3 py-2 rounded-full
+    bg-gray-200 dark:bg-[#111827]
+    border border-gray-300 dark:border-[#1e2a3e]
+    shadow-sm dark:shadow-[0_0_10px_rgba(0,0,0,0.4)]
+    transition"
+        >
+          {["All", "Web", "Mobile"].map((name) => (
+            <ProjectTag
+              key={name}
+              onClick={() => handleTagChange(name)}
+              name={name}
+              isSelected={tag === name}
+            />
+          ))}
+        </div>
       </div>
 
       {/* Project Grid */}
-      <ul ref={ref} className="grid md:grid-cols-3 mx-2 gap-8 md:gap-12">
-        {filteredProjects.map((project, index) => (
+      <motion.ul
+        ref={ref}
+        className="grid md:grid-cols-3 mx-2 gap-8 md:gap-12"
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        variants={{
+          visible: {
+            transition: { staggerChildren: 0.15 }
+          }
+        }}
+      >
+        {filteredProjects.map((project) => (
           <motion.li
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
             key={project.id}
-            variants={cardVariants}
-            animate={isInView ? "animate" : "initial"}
-            transition={{ duration: 0.4, delay: index * 0.2 }}
+            variants={{
+              hidden: { opacity: 0, y: 35 },
+              visible: { opacity: 1, y: 0 }
+            }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
           >
             <ProjectCard
               title={project.title}
@@ -145,10 +173,16 @@ const Projects: FC = () => {
               imgUrl={project.image}
               gitUrl={project.gitUrl}
               previewUrl={project.previewUrl}
+              onClickMore={() => openModal(project)}
+            />
+            <ProjectModal
+              isOpen={isModalOpen}
+              onClose={closeModal}
+              project={selectedProject}
             />
           </motion.li>
         ))}
-      </ul>
+      </motion.ul>
     </section>
   );
 };

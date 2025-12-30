@@ -1,12 +1,13 @@
 "use client";
 import { FC, useState } from "react";
-import GithubIcon from "../../../public/github-icon.svg";
-import LinkedinIcon from "../../../public/linkedin-icon.svg";
+import GithubIcon from "../../../../public/github-icon.svg";
+import LinkedinIcon from "../../../../public/linkedin-icon.svg";
 import Link from "next/link";
 import Image from "next/image";
 import axios from "axios";
 import { SubmitHandler, useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
+import NeonButton from "../../utils/NeonButton";
 
 interface ContactFormData {
   email: string;
@@ -51,12 +52,11 @@ const Contact: FC = () => {
   return (
     <section id="contact" className="pt-16">
       <Toaster position="top-right" />
-
-      <h2 className="text-center text-4xl font-bold text-black dark:text-white mt-4 mb-2 md:mb-5">
+      <h2 className="text-center text-4xl font-bold text-black dark:text-white my-4">
         Contact Me
       </h2>
 
-      <div className="grid md:grid-cols-2 mb-12 md:mb-12 pt-12 pb-24 gap-4 relative">
+      <div className="grid md:grid-cols-2 mb-12 pt-12 pb-24 gap-4 relative">
         <div className="to-transparent rounded-full h-80 w-80 z-0 blur-lg absolute top-140 left-18 transform -translate-x-1/2 -translate-1/2
           bg-[radial-gradient(ellipse_at_center,#581c87,#581c8700)] dark:bg-[radial-gradient(ellipse_at_center,#581c87,#581c8700)]">
         </div>
@@ -67,8 +67,9 @@ const Contact: FC = () => {
             Let&apos;s Connect
           </h5>
           <p className="text-[#3f4346] dark:text-[#ADB7BE] text-justify mb-4 max-w-md">
-            I&apos;m currently looking for new opportunities — Whether you have
-            a question or just want to say hi, I&apos;ll get back to you!
+            I&apos;m always open to exciting collaborations and new opportunities in tech.
+            Whether you have a project in mind, a question, or just want to connect — feel free to reach out.
+            I&apos;ll do my best to get back to you as soon as possible!
           </p>
 
           <div className="socials flex flex-row gap-2">
@@ -99,7 +100,7 @@ const Contact: FC = () => {
                     message: "Invalid email address",
                   },
                 })}
-                className="bg-[#eee8e8] dark:bg-[#18191E] border border-[#cacee6] dark:border-[#33353F] placeholder-[#484b4e] dark:placeholder-[#9CA2A9] text-gray-900 dark:text-white text-sm rounded-lg block w-full p-2.5"
+                className="bg-[#eee8e8] dark:bg-[#18191E] border border-[#cacee6] dark:border-[#33353F] placeholder-[#484b4e] dark:placeholder-[#9CA2A9] text-gray-900 dark:text-white text-sm rounded-xl block w-full p-2.5"
                 placeholder="yourname@example.com"
               />
               {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
@@ -114,7 +115,7 @@ const Contact: FC = () => {
                 id="subject"
                 type="text"
                 {...register("subject", { required: "Subject is required" })}
-                className="bg-[#eee8e8] dark:bg-[#18191E] border border-[#cacee6] dark:border-[#33353F] text-gray-900 dark:text-white text-sm rounded-lg block w-full p-2.5"
+                className="bg-[#eee8e8] dark:bg-[#18191E] border border-[#cacee6] dark:border-[#33353F] text-gray-900 dark:text-white text-sm rounded-xl block w-full p-2.5"
                 placeholder="Job Opportunity Inquiry"
               />
               {errors.subject && <p className="text-red-500 text-sm">{errors.subject.message}</p>}
@@ -128,14 +129,21 @@ const Contact: FC = () => {
               <textarea
                 id="message"
                 {...register("message", { required: "Message is required" })}
-                className="bg-[#eee8e8] dark:bg-[#18191E] border border-[#cacee6] dark:border-[#33353F] text-gray-900 dark:text-white text-sm rounded-lg block w-full p-2.5"
+                className="bg-[#eee8e8] dark:bg-[#18191E] border border-[#cacee6] dark:border-[#33353F] text-gray-900 dark:text-white text-sm rounded-xl block w-full p-2.5"
                 placeholder="Hello Chirag, we would like to connect regarding a potential role..."
                 rows={4}
               />
               {errors.message && <p className="text-red-500 text-sm">{errors.message.message}</p>}
             </div>
 
-            <button
+            <NeonButton
+              text="Send Message"
+              showLoader={loading}
+              disabled={loading}
+              className="w-full py-2.5 px-5 text-sm rounded-xl mt-2"
+            />
+
+            {/* <button
               type="submit"
               disabled={loading}
               className={`bg-primary-500 hover:bg-primary-600 text-white font-medium py-2.5 px-5 rounded-lg w-full flex items-center justify-center gap-2 transition ${loading ? "opacity-70 cursor-not-allowed" : ""
@@ -146,8 +154,7 @@ const Contact: FC = () => {
                 // <span className="animate-spin border-t-2 border-white rounded-full h-5 w-5"></span>
                 <span className="animate-spin inline-block border-2 border-t-transparent border-white rounded-full h-5 w-5"></span>
               )}
-            </button>
-
+            </button> */}
           </form>
         </div>
       </div>

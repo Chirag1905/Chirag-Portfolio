@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { FC } from "react";
 
-interface NavLinkProps {
+interface HeaderLinkProps {
   href: string;
   title: string;
 }
 
-const NavLink: FC<NavLinkProps> = ({ href, title }) => {
+const HeaderLink: FC<HeaderLinkProps> = ({ href, title }) => {
   return (
     <Link
       href={href}
@@ -17,4 +17,4 @@ const NavLink: FC<NavLinkProps> = ({ href, title }) => {
   );
 };
 
-export default NavLink;
+export default HeaderLink;

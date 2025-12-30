@@ -13,8 +13,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Chirag's Portfolio",
+  title: "Chirag Vadhavana | Mern Stack Developer",
   description: "Created by Chirag",
+  icons: {
+    icon: "/images/hero-image2-removebg.png",
+  },
 };
 
 export default function RootLayout({

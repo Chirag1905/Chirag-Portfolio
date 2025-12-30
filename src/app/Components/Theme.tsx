@@ -4,7 +4,7 @@ import { FC, useEffect, useState } from "react";
 
 const Theme: FC = () => {
   const [mounted, setMounted] = useState(false);
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [theme, setTheme] = useState<"light" | "dark">("dark");
 
   // Ensure component only renders theme after mounting on client
   useEffect(() => {

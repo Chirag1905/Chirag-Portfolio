@@ -1,17 +1,17 @@
 "use client";
 import dynamic from "next/dynamic";
-import Dashboard from "./Components/Dashboard";
-import About from "./Components/About";
-import Contact from "./Components/Contact";
-import Footer from "./Components/Footer";
-import Header from "./Components/Header";
+import Dashboard from "./Components/Dashboard/Dashboard";
+import Footer from "./Components/Footer/Footer";
+import Header from "./Components/Header/Header";
 import { JSX } from "react";
 import { Toaster } from "react-hot-toast";
+import About from "./Components/About/About";
+import Contact from "./Components/Contact/Contact";
 
-const Achievements = dynamic(() => import("./Components/Achievements"), {
+const Achievements = dynamic(() => import("./Components/Achievements/Achievements"), {
   ssr: false,
 });
-const Projects = dynamic(() => import("./Components/Projects"), {
+const Projects = dynamic(() => import("./Components/Projects/Projects"), {
   ssr: false,
 });
 

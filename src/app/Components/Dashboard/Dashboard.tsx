@@ -1,13 +1,12 @@
-"use client";
 import { FC } from "react";
 import Image from "next/image";
 import { TypeAnimation } from "react-type-animation";
 import { motion } from "framer-motion";
-import Link from "next/link";
+import NeonLink from "../../utils/NeonLink";
 
 const Dashboard: FC = () => {
   return (
-    <section className="lg:py-16">
+    <section className="lg:py-16" id="dashboard">
       <div className="grid grid-cols-1 sm:grid-cols-12">
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
@@ -24,9 +23,9 @@ const Dashboard: FC = () => {
               sequence={[
                 "Chirag Vadhavana",
                 1000,
-                "Web Developer",
+                "Mern Stack Developer",
                 1000,
-                "Part-time Trader",
+                "Part-time Freelancer",
                 1000,
                 "Researcher",
                 1000,
@@ -37,10 +36,14 @@ const Dashboard: FC = () => {
             />
           </h1>
           <p className="text-[#4b5053] dark:text-[#ADB7BE] text-base sm:text-lg mb-6 lg:text-xl">
-            Hi, My Name is Chirag and I am a Passionate
+            Hi, my name is ©HI®@G and I am a Passionate Software Developer.
           </p>
+          <div className="flex gap-4 mt-6">
+            <NeonLink text="Hire Me" link="/#contact" />
+            <NeonLink text="Download CV" link="Resume_Chirag.pdf" />
+          </div>
 
-          <div>
+          {/* <div>
             <Link
               href="/#contact"
               className="px-6 inline-block py-3 w-full sm:w-fit rounded-full mr-4 bg-linear-to-br from-primary-500 to-secondary-500 hover:bg-slate-200 text-white"
@@ -49,15 +52,15 @@ const Dashboard: FC = () => {
             </Link>
 
             <Link
-              href="Chirag_Resume.pdf"
-              download="Chirag_Resume.pdf"
+              href="Resume_Chirag.pdf"
+              download="Resume_Chirag.pdf"
               className="px-1 inline-block py-1 w-full sm:w-fit rounded-full bg-linear-to-br from-primary-500 to-secondary-500 hover:bg-slate-800 text-black dark:text-white mt-3"
             >
-              <span className="block bg-[#e7e7e7] dark:bg-[#121212] hover:bg-slate-800 rounded-full px-5 py-2">
+              <span className="block bg-[#e7e7e7] dark:bg-[#121212] hover:bg-[#de43bc] hover:text-white rounded-full px-5 py-2">
                 Download CV
               </span>
             </Link>
-          </div>
+          </div> */}
         </motion.div>
 
         <motion.div

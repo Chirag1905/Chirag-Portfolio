@@ -1,17 +1,17 @@
 "use client";
 import Link from "next/link";
 import { FC, useState } from "react";
-import NavLink from "./NavLink";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import MenuOverlay from "./MenuOverlay";
-import Theme from "./Theme";
+import Theme from "../Theme";
+import HeaderLink from "./HeaderLink";
 
-interface NavLinkItem {
+interface HeaderLinkItem {
   title: string;
   path: string;
 }
 
-const navLinks: NavLinkItem[] = [
+const navLinks: HeaderLinkItem[] = [
   {
     title: "Projects",
     path: "#projects",
@@ -35,7 +35,7 @@ const Header: FC = () => {
 
         {/* Logo */}
         <Link
-          href="/"
+          href="#dashboard"
           className="text-1xl md:text-4xl text-black dark:text-white font-semibold"
         >
           Chirag&apos;s Portfolio
@@ -58,9 +58,9 @@ const Header: FC = () => {
         {/* Desktop Menu */}
         <div className="menu hidden md:block md:w-auto">
           <ul className="flex p-5 md:p-0 md:flex-row md:space-x-8 items-center">
-            {navLinks.map((link: NavLinkItem, index: number) => (
+            {navLinks.map((link: HeaderLinkItem, index: number) => (
               <li key={index}>
-                <NavLink href={link.path} title={link.title} />
+                <HeaderLink href={link.path} title={link.title} />
               </li>
             ))}
             <Theme />

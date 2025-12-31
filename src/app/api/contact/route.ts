@@ -23,15 +23,11 @@ export async function POST(req: Request) {
     });
 
     await transporter.sendMail({
-      from: process.env.EMAIL_USER, // Sender must be your Gmail
+      from: "chiragvadhavana1@gmail.com", // Sender must be your Gmail
       replyTo: email, // So you can reply to the user's mail
-      to: process.env.EMAIL_USER, // Where you receive messages
+      to: "chiragvadhavana1@gmail.com", // Where you receive messages
       subject: `Portfolio Contact: ${subject}`,
-      text: `
-Email: ${email}
-Message:
-${message}
-      `,
+      text: `Email: ${email} Message: ${message}`,
     });
 
     return NextResponse.json(

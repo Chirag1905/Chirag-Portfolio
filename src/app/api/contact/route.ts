@@ -17,8 +17,8 @@ export async function POST(req: Request) {
       port: 587,
       secure: false, // true for 465, false for TLS
       auth: {
-        user: process.env.EMAIL_USER, // your Gmail
-        pass: process.env.EMAIL_PASS, // your App password
+        user: "chiragvadhavana1@gmail.com", // your Gmail
+        pass: "pjgb zxfj dpoh afkb", // your App password
       },
     });
 

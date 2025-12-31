@@ -48,14 +48,11 @@ const Header: FC = () => {
     );
 
     sections.forEach((section) => section && observer.observe(section));
-
     return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -68,13 +65,13 @@ const Header: FC = () => {
         }`}
     >
       <div className="flex container items-center justify-between mx-auto px-4 lg:py-4 py-2">
-
         {/* LOGO */}
         <Link
           href="#dashboard"
           className="text-2xl md:text-3xl text-black dark:text-white font-bold tracking-wide"
         >
-          Chirag<span className="text-indigo-600 dark:text-indigo-400">.</span>Portfolio
+          Chirag
+          <span className="text-indigo-600 dark:text-indigo-400">.</span>Portfolio
         </Link>
 
         {/* Mobile Menu Button */}
@@ -111,13 +108,19 @@ const Header: FC = () => {
             Resume
           </Link>
 
-          {/* Theme Toggle */}
+          {/* Theme Toggle visible in Desktop */}
           <Theme />
         </div>
       </div>
 
-      {/* Mobile Overlay */}
-      {navbarOpen && <MenuOverlay links={navLinks} />}
+      {/* Mobile Overlay with Theme */}
+      {navbarOpen && (
+        <MenuOverlay links={navLinks}>
+          <div className="flex justify-center mt-6">
+            <Theme />
+          </div>
+        </MenuOverlay>
+      )}
     </nav>
   );
 };

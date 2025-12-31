@@ -50,29 +50,27 @@ const Contact: FC = () => {
 
 
   return (
-    <section id="contact" className="pt-16">
+    <section className="border border-black/10 dark:border-white/10 rounded-4xl shadow-2xl bg-[#F6F6F6] dark:bg-[#151515] text-center text-black dark:text-white my-7 py-4 sm:my-20 px-4" id="contact">
       <Toaster position="top-right" />
-      <h2 className="text-center text-4xl font-bold text-black dark:text-white my-4">
+      <h2 className="text-2xl sm:text-4xl font-bold pb-6 sm:py-6">
         Contact Me
       </h2>
 
-      <div className="grid md:grid-cols-2 mb-12 pt-12 pb-24 gap-4 relative">
-        <div className="to-transparent rounded-full h-80 w-80 z-0 blur-lg absolute top-140 left-18 transform -translate-x-1/2 -translate-1/2
-          bg-[radial-gradient(ellipse_at_center,#581c87,#581c8700)] dark:bg-[radial-gradient(ellipse_at_center,#581c87,#581c8700)]">
-        </div>
-
+      <div className="grid sm:grid-cols-2 sm:px-10 sm:py-10 gap-4 relative">
+        <div className="to-transparent rounded-full h-80 w-80 z-0 blur-lg absolute top-100 left-40 transform -translate-x-1/2 -translate-1/2
+          bg-[radial-gradient(ellipse_at_center,#581c87,#581c8700)] dark:bg-[radial-gradient(ellipse_at_center,#581c87,#581c8700)]"/>
         {/* Left Section */}
-        <div className="z-10">
-          <h5 className="text-xl font-bold text-black dark:text-white my-2">
+        <div className="z-10 text-left">
+          <h5 className="text-base sm:text-xl font-bold text-black dark:text-white my-2">
             Let&apos;s Connect
           </h5>
-          <p className="text-[#3f4346] dark:text-[#ADB7BE] text-justify mb-4 max-w-md">
+          <p className="text-sm sm:text-base text-[#3f4346] dark:text-[#ADB7BE] text-justify mb-6 max-w-md">
             I&apos;m always open to exciting collaborations and new opportunities in tech.
             Whether you have a project in mind, a question, or just want to connect — feel free to reach out.
             I&apos;ll do my best to get back to you as soon as possible!
           </p>
 
-          <div className="socials flex flex-row gap-2">
+          <div className="flex flex-row gap-2">
             <Link href="https://github.com/Chirag1905?tab=repositories" target="_blank">
               <Image src={GithubIcon} alt="Github Icon" />
             </Link>
@@ -83,7 +81,7 @@ const Contact: FC = () => {
         </div>
 
         {/* Right Section - Form */}
-        <div className="z-10">
+        <div className="z-10 text-left">
           <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
             {/* Email */}
             <div className="mb-6">
@@ -142,19 +140,6 @@ const Contact: FC = () => {
               disabled={loading}
               className="w-full py-2.5 px-5 text-sm rounded-xl mt-2"
             />
-
-            {/* <button
-              type="submit"
-              disabled={loading}
-              className={`bg-primary-500 hover:bg-primary-600 text-white font-medium py-2.5 px-5 rounded-lg w-full flex items-center justify-center gap-2 transition ${loading ? "opacity-70 cursor-not-allowed" : ""
-                }`}
-            >
-              Send Message
-              {loading && (
-                // <span className="animate-spin border-t-2 border-white rounded-full h-5 w-5"></span>
-                <span className="animate-spin inline-block border-2 border-t-transparent border-white rounded-full h-5 w-5"></span>
-              )}
-            </button> */}
           </form>
         </div>
       </div>

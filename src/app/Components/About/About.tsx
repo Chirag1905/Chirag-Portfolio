@@ -46,16 +46,12 @@ const TAB_DATA: TabData[] = [
         ].map((item) => (
           <span
             key={item.name}
-            className="
-  flex items-center gap-2 
-  px-3 py-1.5 text-sm rounded-lg
-  bg-[#b9b9b114] dark:bg-[#0D1524]
-  border border-[#1e2a3e] dark:border-[#1e2a3e]
-  text-gray-700 dark:text-[#c7d7f5]
-  hover:text-black dark:hover:text-white 
-  hover:bg-blue-100 dark:hover:bg-[#11203a]
-  hover:border-blue-500
-  transition-all duration-300"
+            className="flex items-center gap-2 px-3 py-2 text-sm rounded-lg
+              bg-[#b9b9b114] dark:bg-[#0D1524]
+              border border-[#1e2a3e] dark:border-[#1e2a3e]
+              text-gray-700 dark:text-[#c7d7f5]
+              hover:bg-blue-100 dark:hover:bg-[#11203a]
+              hover:border-blue-500 transition-all duration-300"
           >
             <span className="text-base">{item.icon}</span>
             {item.name}
@@ -89,12 +85,12 @@ const TAB_DATA: TabData[] = [
           <div
             key={item.title}
             className="bg-[#0D1524] p-4 rounded-xl border border-[#1e2a3e] 
-        text-[#c7d7f5] hover:border-blue-500 hover:shadow-[0_0_10px_rgba(29,78,216,0.5)]
-        transition-all duration-300"
+              text-[#c7d7f5] hover:border-blue-500 hover:shadow-[0_0_10px_rgba(29,78,216,0.5)]
+              transition-all duration-300"
           >
-            <p className="font-semibold text-white">{item.title}</p>
-            <p className="text-sm opacity-80">{item.inst}</p>
-            <p className="text-blue-400 font-medium mt-1">{item.score}</p>
+            <p className="font-semibold text-white text-sm md:text-base">{item.title}</p>
+            <p className="text-xs md:text-sm opacity-80">{item.inst}</p>
+            <p className="text-blue-400 font-medium mt-1 text-sm">{item.score}</p>
           </div>
         ))}
       </div>
@@ -104,7 +100,7 @@ const TAB_DATA: TabData[] = [
     title: "Certifications",
     id: "certifications",
     content: (
-      <ul className="space-y-3 text-[#c7d7f5]">
+      <ul className="space-y-3">
         {[
           "ChatGPT Workshop",
           "BrainyBeams Technology",
@@ -113,9 +109,9 @@ const TAB_DATA: TabData[] = [
         ].map((cert) => (
           <li
             key={cert}
-            className="bg-[#0D1524] p-3 rounded-lg border border-[#1e2a3e]
-        hover:border-blue-500 hover:shadow-[0_0_10px_rgba(29,78,216,0.5)]
-        transition-all duration-300"
+            className="bg-[#0D1524] p-3 text-sm rounded-lg border border-[#1e2a3e]
+              hover:border-blue-500 hover:shadow-[0_0_10px_rgba(29,78,216,0.5)]
+              transition-all duration-300"
           >
             {cert}
           </li>
@@ -138,27 +134,29 @@ const About: FC = () => {
   const activeTabContent = TAB_DATA.find((t) => t.id === tab)?.content;
 
   return (
-    <section className="text-black dark:text-white pt-16" id="about">
-      <h2 className="text-center text-4xl font-bold text-black dark:text-white my-4">
+    <section className="border border-black/10 dark:border-white/10 rounded-4xl shadow-2xl bg-[#F6F6F6] dark:bg-[#151515] text-center text-black dark:text-white my-7 py-4 sm:my-20 px-4" id="about">
+      <h2 className="text-2xl sm:text-4xl font-bold pb-6 sm:py-6">
         About Me
       </h2>
-      <div className="md:grid md:grid-cols-2 items-center py-8 px-4 gap-16">
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 items-center gap-10 sm:gap-12">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: "easeOut" }}
+          className="flex justify-center"
         >
           <Image
-            className="rounded-3xl border border-[#1e2a3e] hover:shadow-[0_0_15px_rgba(29,78,216,0.35)] transition"
             src="/images/about-image.png"
-            width={500}
-            height={500}
-            alt="About image"
+            width={450}
+            height={450}
+            className="rounded-4xl w-full hover:shadow-[0_0_15px_rgba(29,78,216,0.35)] transition"
+            alt="About Me"
           />
         </motion.div>
-        <div className="mt-4 md:mt-0 text-left flex flex-col h-full">
-          <p className="text-base lg:text-lg text-[#1a2a48] dark:text-[#c7d7f5] leading-relaxed">
+        <div className="text-left flex flex-col h-full">
+          <p className="text-sm sm:text-base md:text-lg leading-relaxed text-[#1a2a48] dark:text-[#c7d7f5]">
             I am a passionate MERN Stack Developer focused on creating fast,
             accessible, and visually engaging web applications. I specialize in
             building pixel-perfect UI with clean, scalable code — combining
@@ -169,7 +167,7 @@ const About: FC = () => {
             collaborating with teams to turn ideas into successful real-world digital
             products.
           </p>
-          <div className="flex flex-row justify-start mt-8 space-x-2 p-1 rounded-xl">
+          <div className="flex flex-row justify-start mt-10 p-1">
             {TAB_DATA.map((t) => (
               <TabButton
                 key={t.id}

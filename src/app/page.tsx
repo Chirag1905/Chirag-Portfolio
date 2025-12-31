@@ -20,7 +20,7 @@ export default function Home(): JSX.Element {
     <main className="flex min-h-screen flex-col bg-[#fffefe] dark:bg-[#121212]">
       <Toaster position="top-right" />
       <Header />
-      <div className="container mt-24 mx-auto px-12 py-4">
+      <div className="container mt-24 mx-auto px-4 sm:px-12 py-4">
         <Dashboard />
         <Achievements />
         <Projects />

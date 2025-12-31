@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import MenuOverlay from "./MenuOverlay";
 import Theme from "../Theme";
@@ -28,47 +28,95 @@ const navLinks: HeaderLinkItem[] = [
 
 const Header: FC = () => {
   const [navbarOpen, setNavbarOpen] = useState<boolean>(false);
+  const [activeSection, setActiveSection] = useState<string>("#dashboard");
+  const [scrolled, setScrolled] = useState<boolean>(false);
+
+  useEffect(() => {
+    const sections = navLinks.map((link) =>
+      document.querySelector(link.path)
+    ) as HTMLElement[];
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(`#${entry.target.id}`);
+          }
+        });
+      },
+      { threshold: 0.6 }
+    );
+
+    sections.forEach((section) => section && observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#F4F4F4] dark:bg-[#1d1b1b] bg-opacity-100 border rounded border-[#eee8e8] dark:border-[#191919]">
-      <div className="flex container lg:py-4 flex-wrap items-center justify-between mx-auto px-4 py-2">
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
+        ? "backdrop-blur-lg bg-white/70 dark:bg-[#1b1b1b]/70 shadow-md border-b border-gray-200 dark:border-gray-800"
+        : "bg-transparent"
+        }`}
+    >
+      <div className="flex container items-center justify-between mx-auto px-4 lg:py-4 py-2">
 
-        {/* Logo */}
+        {/* LOGO */}
         <Link
           href="#dashboard"
-          className="text-1xl md:text-4xl text-black dark:text-white font-semibold"
+          className="text-2xl md:text-3xl text-black dark:text-white font-bold tracking-wide"
         >
-          Chirag&apos;s Portfolio
+          Chirag<span className="text-indigo-600 dark:text-indigo-400">.</span>Portfolio
         </Link>
 
         {/* Mobile Menu Button */}
-        <div className="mobile-menu block md:hidden">
+        <div className="md:hidden">
           <button
             onClick={() => setNavbarOpen(!navbarOpen)}
-            className="flex items-center px-3 py-2 border rounded border-slate-200 dark:border-black text-slate-800 dark:text-slate-200 hover:text-black dark:hover:text-white hover:border-black dark:hover:border-white"
+            className="flex items-center p-2 text-gray-700 dark:text-gray-300"
           >
             {!navbarOpen ? (
-              <Bars3Icon className="h-5 w-5" />
+              <Bars3Icon className="h-7 w-7" />
             ) : (
-              <XMarkIcon className="h-5 w-5" />
+              <XMarkIcon className="h-7 w-7" />
             )}
           </button>
         </div>
 
         {/* Desktop Menu */}
-        <div className="menu hidden md:block md:w-auto">
-          <ul className="flex p-5 md:p-0 md:flex-row md:space-x-8 items-center">
-            {navLinks.map((link: HeaderLinkItem, index: number) => (
-              <li key={index}>
-                <HeaderLink href={link.path} title={link.title} />
-              </li>
-            ))}
-            <Theme />
-          </ul>
+        <div className="hidden md:flex items-center space-x-10">
+          {navLinks.map((link, index) => (
+            <HeaderLink
+              key={index}
+              href={link.path}
+              title={link.title}
+              active={activeSection === link.path}
+            />
+          ))}
+
+          {/* Resume Button */}
+          <Link
+            href="/Resume_Chirag.pdf"
+            download
+            className="rounded-lg border border-indigo-600 px-4 py-2 font-medium text-indigo-600 dark:text-white dark:border-white hover:bg-indigo-600 hover:text-white transition-all"
+          >
+            Resume
+          </Link>
+
+          {/* Theme Toggle */}
+          <Theme />
         </div>
       </div>
 
-      {/* Mobile Navigation Overlay */}
+      {/* Mobile Overlay */}
       {navbarOpen && <MenuOverlay links={navLinks} />}
     </nav>
   );

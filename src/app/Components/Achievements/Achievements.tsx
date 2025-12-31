@@ -41,8 +41,8 @@ const achievementsList: AchievementItem[] = [
 
 const Achievements: FC = () => {
   return (
-    <div className="py-8 px-4 xl:gap-16 sm:py-16 xl:px-16">
-      <div className="bg-[#F4F4F4] dark:bg-[#1d1b1b] sm:border-[#eee8e8] dark:sm:border-[#191919] sm:border shadow-2xl rounded-4xl py-8 px-16 flex flex-col sm:flex-row items-center justify-between">
+    <section className="border border-black/10 dark:border-white/10 rounded-4xl shadow-2xl bg-[#F6F6F6] dark:bg-[#151515] text-center text-black dark:text-white my-7 py-4 sm:my-20 px-4">
+      <div className="py-6 px-6 grid grid-cols-2 sm:grid-cols-4 gap-6 items-center justify-center">
         {achievementsList?.map((achievement, index) => (
           <div key={index} className="flex flex-col items-center justify-center mx-4 my-4 sm:my-0">
             <h2 className="text-black dark:text-white text-4xl font-bold flex flex-row items-center">
@@ -62,7 +62,7 @@ const Achievements: FC = () => {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

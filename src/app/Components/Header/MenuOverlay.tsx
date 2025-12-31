@@ -1,5 +1,5 @@
 import { FC } from "react";
-import NavLink from "./HeaderLink";
+import HeaderLink from "./HeaderLink";
 
 interface NavLinkItem {
   title: string;
@@ -12,10 +12,10 @@ interface MenuOverlayProps {
 
 const MenuOverlay: FC<MenuOverlayProps> = ({ links }) => {
   return (
-    <ul className="flex flex-col py-4 items-center">
+    <ul className="flex flex-col gap-8 py-8 text-xl bg-white dark:bg-[#1b1b1b] shadow-md rounded-b-lg items-center animate-slideDown">
       {links.map((link, index) => (
         <li key={index}>
-          <NavLink href={link.path} title={link.title} />
+          <HeaderLink href={link.path} title={link.title} />
         </li>
       ))}
     </ul>

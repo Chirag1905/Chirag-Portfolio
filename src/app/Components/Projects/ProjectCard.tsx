@@ -31,13 +31,11 @@ const ProjectCard: FC<ProjectCardProps> = ({
     <motion.div
       whileHover={{ scale: 1.03 }}
       transition={{ type: "spring", stiffness: 180, damping: 15 }}
-      className="
-        group relative rounded-[28px] overflow-hidden
-        bg-[#0F172A]/80 backdrop-blur-xl
-        border border-[#1e2a3e]
+      className="group relative rounded-[28px] overflow-hidden
+        bg-[#F6F6F6] dark:bg-[#151515] backdrop-blur-xl
+        border border-black/10 dark:border-white/10
         shadow-[0_0_35px_rgba(26,95,255,0.15)]
-        transition-all duration-500
-      "
+        transition-all duration-500"
     >
 
       {/* Ambient Glow */}
@@ -49,8 +47,7 @@ const ProjectCard: FC<ProjectCardProps> = ({
 
         {/* HOVER ICONS ONLY ON IMAGE */}
         <div
-          className="
-    absolute inset-0 z-10 flex items-center justify-center gap-6
+          className="absolute inset-0 z-10 flex items-center justify-center gap-6
     bg-black/40 backdrop-blur-sm
     opacity-0 group-hover:opacity-100
     transition-all duration-500 ease-out
@@ -78,7 +75,7 @@ const ProjectCard: FC<ProjectCardProps> = ({
 
       {/* Content */}
       <div className="relative z-20 p-6 space-y-4">
-        <h3 className="text-2xl font-bold text-white mb-3 transition group-hover:text-blue-400">
+        <h3 className="text-xl sm:text-2xl font-bold mb-3 transition group-hover:text-blue-400">
           {title}
         </h3>
 
@@ -87,11 +84,9 @@ const ProjectCard: FC<ProjectCardProps> = ({
           {techBadges.map((tech) => (
             <span
               key={tech}
-              className="
-                text-xs font-medium px-3 py-1 rounded-full
-                bg-blue-950/50 text-blue-300 border border-blue-800
-                shadow-[0_0_10px_rgba(29,78,216,0.25)]
-              "
+              className="text-xs font-medium px-3 py-1 rounded-full
+                bg-[#F6F6F6] dark:bg-[#151515] text-black dark:text-white border border-blue-800
+                shadow-[0_0_10px_rgba(29,78,216,0.25)]"
             >
               {tech}
             </span>
@@ -99,7 +94,7 @@ const ProjectCard: FC<ProjectCardProps> = ({
         </div>
 
         {/* Description */}
-        <p className="text-[#d1d5db] leading-relaxed">
+        <p className="text-black dark:text-white leading-relaxed">
           {smallDescription}
         </p>
 
@@ -107,13 +102,11 @@ const ProjectCard: FC<ProjectCardProps> = ({
         <motion.button
           whileTap={{ scale: 0.92 }}
           onClick={() => onClickMore?.()}
-          className="
-            mt-5 px-5 py-2 text-sm font-semibold rounded-full
+          className="px-5 py-2 text-sm font-semibold rounded-full
             bg-blue-600 text-white
             hover:bg-blue-700
             shadow-md hover:shadow-blue-500/30
-            transition-all duration-300 cursor-pointer
-          "
+            transition-all duration-300 cursor-pointer"
         >
           Details
         </motion.button>

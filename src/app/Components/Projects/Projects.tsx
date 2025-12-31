@@ -118,8 +118,8 @@ const Projects: FC = () => {
 
 
   return (
-    <section className="pt-10" id="projects">
-      <h2 className="text-center text-4xl font-bold text-black dark:text-white my-4">
+    <section className="border border-black/10 dark:border-white/10 rounded-4xl shadow-2xl bg-[#F6F6F6] dark:bg-[#151515] text-center text-black dark:text-white my-7 py-4 sm:my-20 px-4" id="projects">
+      <h2 className="text-2xl sm:text-4xl font-bold pb-6 sm:py-6">
         My Projects
       </h2>
 
@@ -147,7 +147,7 @@ const Projects: FC = () => {
       {/* Project Grid */}
       <motion.ul
         ref={ref}
-        className="grid md:grid-cols-3 mx-2 gap-8 md:gap-12"
+        className="grid sm:grid-cols-3 gap-7"
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         variants={{

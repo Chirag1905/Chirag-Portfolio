@@ -11,6 +11,7 @@
   "dependencies": {
     "@heroicons/react": "^2.2.0",
     "@types/nodemailer": "^7.0.4",
+    "@vercel/speed-insights": "^1.3.1",
     "axios": "^1.13.2",
     "hammerjs": "^2.0.8",
     "next": "16.1.1",

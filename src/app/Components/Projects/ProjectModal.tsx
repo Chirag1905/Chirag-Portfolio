@@ -1,29 +1,10 @@
 "use client";
-import { FC, JSX, useEffect } from "react";
+import { FC, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { XMarkIcon } from "@heroicons/react/24/solid";
-import {
-    FaGithub,
-    FaExternalLinkAlt,
-    FaTimes,
-    FaReact,
-    FaNodeJs,
-    FaDatabase,
-} from "react-icons/fa";
-import {
-    SiNextdotjs,
-    SiMongodb,
-    SiExpress,
-    SiMysql,
-    SiPostgresql,
-    SiTailwindcss,
-    SiJavascript,
-    SiTypescript,
-    SiBootstrap,
-    SiChakraui,
-} from "react-icons/si";
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
 interface Project {
     title: string;
@@ -40,148 +21,98 @@ interface ModalProps {
     project: Project | null;
 }
 
-const techIconMap: Record<string, JSX.Element> = {
-    "React.js": <FaReact size={18} className="text-cyan-500" />,
-    React: <FaReact size={18} className="text-cyan-500" />,
-    "Next.js": <SiNextdotjs size={18} className="text-black dark:text-white" />,
-    "Node.js": <FaNodeJs size={18} className="text-green-500" />,
-    Express: <SiExpress size={18} className="text-black dark:text-white" />,
-    MongoDB: <SiMongodb size={18} className="text-green-500" />,
-    MySQL: <SiMysql size={18} className="text-blue-600" />,
-    PostgreSQL: <SiPostgresql size={18} className="text-blue-600" />,
-    Tailwind: <SiTailwindcss size={18} className="text-cyan-400" />,
-    JavaScript: <SiJavascript size={18} className="text-yellow-400" />,
-    TypeScript: <SiTypescript size={18} className="text-blue-500" />,
-    Bootstrap: <SiBootstrap size={18} className="text-purple-500" />,
-    "Chakra UI": <SiChakraui size={18} className="text-teal-400" />,
-    SQL: <FaDatabase size={18} className="text-gray-600 dark:text-gray-300" />,
-};
-
 const ProjectModal: FC<ModalProps> = ({ isOpen, onClose, project }) => {
     useEffect(() => {
-        if (!isOpen) return;
-
-        document.body.style.overflow = "hidden";
-        const handleKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
-        window.addEventListener("keydown", handleKey);
-
-        return () => {
-            document.body.style.overflow = "unset";
-            window.removeEventListener("keydown", handleKey);
-        };
-    }, [isOpen, onClose]);
+        document.body.style.overflow = isOpen ? "hidden" : "auto";
+        return () => (document.body.style.overflow = "auto");
+    }, [isOpen]);
 
     if (!isOpen || !project) return null;
 
     return (
         <AnimatePresence>
-            {/* BACKDROP */}
             <motion.div
-                className="fixed inset-0 backdrop-blur-xl flex items-center justify-center z-9999"
+                className="fixed inset-0 z-50 backdrop-blur-xl flex items-center justify-center px-4"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={onClose}
             >
-                {/* MODAL */}
                 <motion.div
-                    className="glass relative max-w-5xl w-full
-            border border-gray-300 dark:border-blue-500/40
-            shadow-2xl rounded-3xl p-6 backdrop-blur-2xl"
-                    initial={{ opacity: 0, scale: 0.8, y: 30 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.85, y: 20 }}
-                    transition={{ duration: 0.3 }}
                     onClick={(e) => e.stopPropagation()}
+                    initial={{ scale: 0.9, opacity: 0, y: 40 }}
+                    animate={{ scale: 1, opacity: 1, y: 0 }}
+                    exit={{ scale: 0.9, opacity: 0, y: 40 }}
+                    transition={{ type: "spring", stiffness: 120, damping: 20 }}
+                    className="relative max-w-5xl w-full
+          rounded-3xl overflow-hidden
+          bg-white dark:bg-[#0A1224]
+          shadow-2xl"
                 >
-                    {/* CLOSE BUTTON */}
+                    {/* Close */}
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-4 
-              bg-gray-200 dark:bg-white/20 
-              p-2 rounded-full hover:bg-gray-300 dark:hover:bg-white/30 
-              transition"
+                        className="absolute top-4 right-4 z-10
+            h-10 w-10 rounded-full
+            bg-black/40 text-white hover:bg-black/60 transition"
                     >
-                        <XMarkIcon className="w-6 h-6 text-black dark:text-white" />
+                        <XMarkIcon className="w-6 h-6 mx-auto" />
                     </button>
 
-                    {/* TITLE */}
-                    <h2 className="text-3xl font-bold text-center bg-linear-to-r from-blue-500 to-blue-700 dark:from-blue-300 dark:to-blue-500 bg-clip-text text-transparent mb-5">
-                        {project.title}
-                    </h2>
-
-                    {/* IMAGE */}
-                    <div className="rounded-xl overflow-hidden shadow-lg mb-6 border border-gray-300 dark:border-white/10 w-full h-75 sm:h-112.5">
+                    {/* HERO IMAGE */}
+                    <div className="relative h-80">
                         <Image
                             src={project.image}
                             alt={project.title}
-                            width={1400}
-                            height={800}
-                            className="object-cover w-full"
+                            fill
+                            className="object-cover"
                         />
+                        <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent" />
+                        <h2 className="absolute bottom-6 left-6 text-3xl font-bold text-white">
+                            {project.title}
+                        </h2>
                     </div>
 
-                    {/* CONTENT SCROLL */}
-                    <div className="max-h-[45vh] overflow-y-auto custom-scrollbar pr-2">
-                        <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed text-center mb-6">
+                    {/* CONTENT */}
+                    <div className="p-8 max-h-[50vh] overflow-y-auto space-y-6">
+                        <p className="text-gray-700 text-justify text-base font-semibold dark:text-gray-300 leading-relaxed">
                             {project.longDescription}
                         </p>
 
-                        {/* TECH TAGS */}
-                        <div className="flex flex-wrap justify-center gap-2 mb-6">
+                        {/* TECH */}
+                        <div className="flex flex-wrap gap-2">
                             {project.technologies?.split(",").map((tech) => (
                                 <span
                                     key={tech}
-                                    className="flex items-center gap-2 px-4 py-1.5 text-sm
-                    bg-gray-200 text-gray-700 border border-gray-300 
-                    dark:bg-blue-900/40 dark:text-blue-200 dark:border-blue-800
-                    rounded-full"
+                                    className="px-4 py-1.5 rounded-full text-sm font-bold bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-200"
                                 >
-                                    {techIconMap[tech.trim()] ?? "⚙"}
                                     {tech.trim()}
                                 </span>
                             ))}
                         </div>
 
-                        {/* ACTION BUTTONS */}
-                        <div className="flex justify-center gap-4 pb-3">
+                        {/* ACTIONS */}
+                        <div className="flex gap-4 pt-4">
                             {project.gitUrl && (
                                 <Link
                                     href={project.gitUrl}
                                     target="_blank"
-                                    className="px-5 py-2.5 text-sm font-semibold 
-                bg-gray-100 text-gray-900 border border-gray-300
-                hover:bg-gray-200
-                dark:bg-gray-900 dark:text-white dark:border-gray-700 
-                rounded-lg transition flex items-center gap-2"
+                                    className="flex items-center gap-2 px-5 py-3 rounded-xl
+                  bg-gray-100 dark:bg-white/10 hover:bg-gray-200 dark:hover:bg-white/20 transition"
                                 >
-                                    <FaGithub className="w-5 h-5" />
-                                    GitHub
+                                    <FaGithub /> GitHub
                                 </Link>
                             )}
-
                             {project.previewUrl && (
                                 <Link
                                     href={project.previewUrl}
                                     target="_blank"
-                                    className="px-5 py-2.5 text-sm font-semibold 
-                bg-blue-600 text-white hover:bg-blue-700 
-                rounded-lg transition flex items-center gap-2"
+                                    className="flex items-center gap-2 px-5 py-3 rounded-xl
+                  bg-blue-600 text-white hover:bg-blue-700 transition"
                                 >
-                                    <FaExternalLinkAlt className="w-4 h-4" />
-                                    Live Preview
+                                    <FaExternalLinkAlt /> Live Preview
                                 </Link>
                             )}
-
-                            <button
-                                onClick={onClose}
-                                className="px-5 py-2.5 text-sm font-semibold 
-                bg-red-600 text-white hover:bg-red-700
-                rounded-lg transition flex items-center gap-2"
-                            >
-                                <FaTimes className="w-4 h-4" />
-                                Close
-                            </button>
                         </div>
                     </div>
                 </motion.div>

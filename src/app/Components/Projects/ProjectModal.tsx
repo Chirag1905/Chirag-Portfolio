@@ -24,7 +24,7 @@ interface ModalProps {
 const ProjectModal: FC<ModalProps> = ({ isOpen, onClose, project }) => {
     useEffect(() => {
         document.body.style.overflow = isOpen ? "hidden" : "auto";
-        return () => (document.body.style.overflow = "auto");
+        return () => { document.body.style.overflow = "auto"; };
     }, [isOpen]);
 
     if (!isOpen || !project) return null;

@@ -131,7 +131,7 @@ const About: FC = () => {
   return (
     <section
       id="about"
-      className="glass-card border border-black/10 dark:border-white/10 rounded-4xl shadow-2xl bg-[#F6F6F6] dark:bg-[#151515] text-black dark:text-white my-10 px-4 sm:px-6 py-6 sm:py-8"
+      className="glass border border-black/10 dark:border-white/10 rounded-4xl shadow-2xl bg-[#F6F6F6] dark:bg-[#151515] text-black dark:text-white my-10 px-4 sm:px-6 py-6 sm:py-8"
     >
       <Reveal>
         <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-10">About Me</h2>

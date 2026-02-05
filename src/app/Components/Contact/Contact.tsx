@@ -49,7 +49,7 @@ const Contact: FC = () => {
   return (
     <section
       id="contact"
-      className="glass-card sm:my-10 rounded-4xl border border-black/10 dark:border-white/10
+      className="glass sm:my-10 rounded-4xl border border-black/10 dark:border-white/10
       bg-[#F6F6F6] dark:bg-[#151515] shadow-xl px-4 py-6 sm:px-10 sm:py-12"
     >
       <Toaster position="top-right" />

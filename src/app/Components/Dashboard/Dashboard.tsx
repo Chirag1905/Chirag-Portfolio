@@ -14,7 +14,7 @@ const Dashboard: FC = () => {
       className="relative sm:my-10"
     >
       <div
-        className="glass-card rounded-4xl p-6 sm:px-15 border border-white/20 dark:border-white/5"
+        className="glass rounded-4xl p-6 sm:px-15 border border-white/20 dark:border-white/5"
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-28">
           {/* LEFT CONTENT */}

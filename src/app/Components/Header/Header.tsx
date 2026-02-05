@@ -95,8 +95,8 @@ const Header: FC = () => {
 
   return (
     <nav
-      className={`glass-card fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${scrolled
-        ? "glass border-white/10 dark:border-white/5 py-3"
+      className={`glass fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${scrolled
+        ? "border-white/10 dark:border-white/5 py-3"
         : "bg-transparent border-transparent py-5"
         }`}
     >

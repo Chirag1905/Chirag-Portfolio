@@ -26,7 +26,7 @@ const Achievements: FC = () => {
       className="relative my-10"
     >
       <div
-        className="glass-card grid grid-cols-2 sm:grid-cols-4 rounded-3xl 
+        className="glass grid grid-cols-2 sm:grid-cols-4 rounded-3xl 
         sm:rounded-4xl p-6 sm:p-10 lg:p-16 gap-y-8 gap-x-4
         border border-white/20 dark:border-white/5"
       >

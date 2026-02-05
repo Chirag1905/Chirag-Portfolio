@@ -34,7 +34,7 @@ const ProjectCard: FC<ProjectCardProps> = ({
       viewport={{ once: true }}
       whileHover={{ y: -8 }}
       transition={{ type: "spring", stiffness: 100, damping: 20 }}
-      className="glass-card group relative rounded-[24px] overflow-hidden h-full flex flex-col"
+      className="glass group relative rounded-[24px] overflow-hidden h-full flex flex-col"
     >
       {/* Ambient Hover Glow */}
       <div className="absolute -inset-1 bg-linear-to-r from-blue-600 to-violet-600 rounded-[24px] opacity-0 group-hover:opacity-20 blur transition duration-500" />

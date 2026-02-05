@@ -1,26 +1,23 @@
 "use client";
 import { FC } from "react";
 
-interface TabButtonProps {
+interface Props {
   active: boolean;
   selectTab: () => void;
   children: React.ReactNode;
 }
 
-const TabButton: FC<TabButtonProps> = ({ active, selectTab, children }) => {
-  return (
-    <button
-      onClick={selectTab}
-      className={`px-5 py-3 text-sm sm:text-base font-semibold transition-all duration-200 
-        ${active
-          ? "text-blue-500 bg-[#b9b9b114] dark:bg-[#101722] rounded-t-xl border-b-2 border-blue-500"
-          : "text-gray-600 hover:text-gray-700 dark:hover:text-gray-200 rounded-t-xl border-b-2 border-transparent"
-        }
-      `}
-    >
-      {children}
-    </button>
-  );
-};
+const TabButton: FC<Props> = ({ active, selectTab, children }) => (
+  <button
+    onClick={selectTab}
+    className={`px-5 py-2 text-sm font-semibold rounded-lg transition-all
+      ${active
+        ? "bg-blue-500 text-white"
+        : "bg-gray-100 text-gray-700 hover:text-blue-500 dark:bg-[#0D1524] dark:text-gray-300 dark:hover:text-blue-400"
+      }`}
+  >
+    {children}
+  </button>
+);
 
 export default TabButton;

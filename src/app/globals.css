@@ -75,35 +75,85 @@ body {
 }
 
 /* =========================
-   PREMIUM GLOWS
+   PREMIUM RESUME NEON BUTTON (FIXED)
 ========================= */
 
-.neon-border {
+.resume-neon {
   position: relative;
+  isolation: isolate;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
-.neon-border::after {
+/* Neon border (VISIBLE) */
+.resume-neon::before {
   content: "";
   position: absolute;
-  inset: -1px;
+  inset: 0;
   border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(45deg,
-      transparent 40%,
-      rgba(56, 189, 248, 0.6),
-      rgba(168, 85, 247, 0.6),
-      transparent 60%);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  padding: 1.5px;
+  background: linear-gradient(120deg,
+      #38bdf8,
+      #6366f1,
+      #a855f7,
+      #38bdf8);
+  background-size: 300% 300%;
+  animation: resumeBorderFlow 6s linear infinite;
+
+  /* Mask to create border */
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
-  pointer-events: none;
-  opacity: 0.5;
-  transition: opacity 0.5s ease;
+
+  z-index: 0;
 }
 
-.neon-border:hover::after {
-  opacity: 1;
+/* Inner content above border */
+.resume-neon>* {
+  position: relative;
+  z-index: 1;
+}
+
+/* Soft outer glow */
+.resume-neon::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: inherit;
+  background: linear-gradient(120deg,
+      rgba(56, 189, 248, 0.6),
+      rgba(99, 102, 241, 0.6),
+      rgba(168, 85, 247, 0.6));
+  filter: blur(20px);
+  opacity: 0.45;
+  z-index: -1;
+  transition: opacity 0.4s ease;
+}
+
+.resume-neon:hover::after {
+  opacity: 0.75;
+}
+
+@keyframes resumeBorderFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 300% 50%;
+  }
+}
+
+/* Dark mode tuning */
+.dark .resume-neon {
+  background: rgba(15, 23, 42, 0.6);
 }
 
 /* =========================
@@ -145,4 +195,19 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(156, 163, 175, 0.8);
+}
+
+/* globals.css (append) */
+* {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+section {
+  scroll-margin-top: 120px;
+}
+
+button,
+a {
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 }

@@ -1,22 +1,42 @@
+// About.tsx
 "use client";
-import { useTransition, useState, JSX, FC } from "react";
+
+import { FC, JSX, useState, useTransition } from "react";
 import Image from "next/image";
+import { AnimatePresence, motion } from "framer-motion";
+import Reveal from "@/app/utils/Reveal";
 import TabButton from "./TabButton";
 import {
+  SiHtml5,
+  SiCss3,
+  SiSass,
+  SiLess,
+  SiBootstrap,
+  SiTailwindcss,
   SiJavascript,
   SiTypescript,
   SiReact,
   SiNextdotjs,
   SiNodedotjs,
   SiExpress,
+  SiRedux,
+  SiGithub,
+  SiGit,
+  SiFirebase,
+  SiJira,
+  SiPostman,
+  SiInsomnia,
+  SiAxios,
+  SiAmazon,
   SiMongodb,
   SiMysql,
   SiPostgresql,
-  SiTailwindcss,
-  SiBootstrap,
-  SiChakraui,
+  SiGraphql,
+  SiDocker,
+  SiKubernetes,
+  SiOpenai,
 } from "react-icons/si";
-import { motion, AnimatePresence } from "framer-motion";
+import { FaAws } from "react-icons/fa";
 
 interface TabData {
   title: string;
@@ -24,39 +44,134 @@ interface TabData {
   content: JSX.Element;
 }
 
+/* ---------------- Card ---------------- */
+const Card = ({
+  name,
+  icon,
+  link,
+}: {
+  name: string;
+  icon: JSX.Element;
+  link?: string;
+}) => {
+  const Wrapper = link ? "a" : "div";
+
+  return (
+    <Wrapper
+      {...(link && {
+        href: link,
+        target: "_blank",
+        rel: "noopener noreferrer",
+      })}
+      className={`
+        flex items-center gap-3 p-4 rounded-xl
+        bg-white border border-gray-200 text-gray-800
+        dark:bg-[#0D1524] dark:border-[#1e2a3e] dark:text-[#c7d7f5]
+        transition-all duration-200
+        ${link ? "cursor-pointer hover:scale-[1.03] hover:border-blue-500" : ""}
+      `}
+    >
+      <span className="text-lg">{icon}</span>
+      <span className="font-medium">{name}</span>
+    </Wrapper>
+  );
+};
+
+/* ---------------- Timeline Item ---------------- */
+const TimelineItem = ({
+  title,
+  place,
+  year,
+}: {
+  title: string;
+  place: string;
+  year: string;
+}) => (
+  <div className="relative pl-6">
+    <div className="absolute left-0 top-1.5 h-3 w-3 rounded-full bg-blue-500" />
+    <div className="bg-white dark:bg-[#0D1524] border border-gray-200 dark:border-[#1e2a3e] rounded-xl p-4">
+      <h4 className="font-semibold text-gray-900 dark:text-white">{title}</h4>
+      <p className="text-sm text-gray-600 dark:text-gray-400">{place}</p>
+      <p className="text-sm text-blue-500 mt-1">{year}</p>
+    </div>
+  </div>
+);
+
+/* ---------------- Tabs Data ---------------- */
 const TAB_DATA: TabData[] = [
   {
     title: "Skills",
     id: "skills",
     content: (
-      <div className="flex flex-wrap gap-3">
-        {[
-          { name: "JavaScript", icon: <SiJavascript className="text-[#F7DF1E]" /> },
-          { name: "TypeScript", icon: <SiTypescript className="text-[#3178C6]" /> },
-          { name: "React.js", icon: <SiReact className="text-[#61DBFB]" /> },
-          { name: "Next.js", icon: <SiNextdotjs className="text-white" /> },
-          { name: "Node.js", icon: <SiNodedotjs className="text-[#68A063]" /> },
-          { name: "Express.js", icon: <SiExpress className="text-gray-300" /> },
-          { name: "MongoDB", icon: <SiMongodb className="text-[#47A248]" /> },
-          { name: "MySQL", icon: <SiMysql className="text-[#00758F]" /> },
-          { name: "PostgreSQL", icon: <SiPostgresql className="text-[#336791]" /> },
-          { name: "Tailwind CSS", icon: <SiTailwindcss className="text-[#38BDF8]" /> },
-          { name: "Bootstrap", icon: <SiBootstrap className="text-[#7952B3]" /> },
-          { name: "Chakra UI", icon: <SiChakraui className="text-[#319795]" /> },
-        ].map((item) => (
-          <span
-            key={item.name}
-            className="flex items-center gap-2 px-3 py-2 text-sm rounded-lg
-              bg-[#b9b9b114] dark:bg-[#0D1524]
-              border border-[#1e2a3e] dark:border-[#1e2a3e]
-              text-gray-700 dark:text-[#c7d7f5]
-              hover:bg-blue-100 dark:hover:bg-[#11203a]
-              hover:border-blue-500 transition-all duration-300"
-          >
-            <span className="text-base">{item.icon}</span>
-            {item.name}
-          </span>
-        ))}
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <Card name="HTML" icon={<SiHtml5 />} />
+        <Card name="CSS" icon={<SiCss3 />} />
+        <Card name="SCSS" icon={<SiSass />} />
+        <Card name="LESS" icon={<SiLess />} />
+        <Card name="Bootstrap" icon={<SiBootstrap />} />
+        <Card name="Tailwind CSS" icon={<SiTailwindcss />} />
+        <Card name="JavaScript" icon={<SiJavascript />} />
+        <Card name="TypeScript" icon={<SiTypescript />} />
+        <Card name="React.js" icon={<SiReact />} />
+        <Card name="Next.js" icon={<SiNextdotjs />} />
+        <Card name="Node.js" icon={<SiNodedotjs />} />
+        <Card name="Express.js" icon={<SiExpress />} />
+      </div>
+    ),
+  },
+  {
+    title: "Technologies & Tools",
+    id: "tools",
+    content: (
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <Card name="Git" icon={<SiGit />} />
+        <Card name="GitHub" icon={<SiGithub />} />
+        <Card name="Redux Toolkit" icon={<SiRedux />} />
+        <Card name="Context API" icon={<SiReact />} />
+        <Card name="Firebase" icon={<SiFirebase />} />
+        <Card name="Jira" icon={<SiJira />} />
+        <Card name="Postman" icon={<SiPostman />} />
+        <Card name="Insomnia" icon={<SiInsomnia />} />
+        <Card name="Axios" icon={<SiAxios />} />
+      </div>
+    ),
+  },
+  {
+    title: "Cloud & DevOps",
+    id: "cloud",
+    content: (
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <Card name="AWS (Lambda, S3, Route53)" icon={<FaAws />} />
+        <Card name="Docker" icon={<SiDocker />} />
+        <Card name="Kubernetes" icon={<SiKubernetes />} />
+        <Card name="CI/CD Pipelines" icon={<SiGithub />} />
+        <Card name="Automation Scripts" icon={<SiGithub />} />
+      </div>
+    ),
+  },
+  {
+    title: "Databases & APIs",
+    id: "db",
+    content: (
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <Card name="MongoDB" icon={<SiMongodb />} />
+        <Card name="MySQL" icon={<SiMysql />} />
+        <Card name="PostgreSQL" icon={<SiPostgresql />} />
+        <Card name="REST APIs" icon={<SiExpress />} />
+        <Card name="GraphQL" icon={<SiGraphql />} />
+      </div>
+    ),
+  },
+  {
+    title: "AI & Automation",
+    id: "ai",
+    content: (
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <Card name="OpenAI / Gemini APIs" icon={<SiOpenai />} />
+        <Card name="GitHub Copilot" icon={<SiGithub />} />
+        <Card name="Cursor AI" icon={<SiGithub />} />
+        <Card name="Antigravity AI" icon={<SiGithub />} />
+        <Card name="Ollama (Local LLMs)" icon={<SiGithub />} />
       </div>
     ),
   },
@@ -64,35 +179,22 @@ const TAB_DATA: TabData[] = [
     title: "Education",
     id: "education",
     content: (
-      <div className="space-y-4">
-        {[
-          {
-            title: "Bachelor of Engineering",
-            inst: "Hasmukh Goswami College of Engineering (GTU)",
-            score: "7.45 CGPA",
-          },
-          {
-            title: "Diploma Engineering",
-            inst: "R.C Technical Institute (GTU)",
-            score: "7.01 CGPA",
-          },
-          {
-            title: "SSC",
-            inst: "Shriji Vidhyalaya (GSHSEB)",
-            score: "69%",
-          },
-        ].map((item) => (
-          <div
-            key={item.title}
-            className="bg-[#0D1524] p-4 rounded-xl border border-[#1e2a3e] 
-              text-[#c7d7f5] hover:border-blue-500 hover:shadow-[0_0_10px_rgba(29,78,216,0.5)]
-              transition-all duration-300"
-          >
-            <p className="font-semibold text-white text-sm md:text-base">{item.title}</p>
-            <p className="text-xs md:text-sm opacity-80">{item.inst}</p>
-            <p className="text-blue-400 font-medium mt-1 text-sm">{item.score}</p>
-          </div>
-        ))}
+      <div className="relative space-y-6 before:absolute before:left-[6px] before:top-0 before:h-full before:w-[2px] before:bg-gray-300 dark:before:bg-gray-700">
+        <TimelineItem
+          title="Bachelor of Engineering"
+          place="Hasmukh Goswami College (GTU)"
+          year="2019 – 2023 | 7.45 CGPA"
+        />
+        <TimelineItem
+          title="Diploma Engineering"
+          place="R.C Technical Institute (GTU)"
+          year="2016 – 2019 | 7.01 CGPA"
+        />
+        <TimelineItem
+          title="SSC"
+          place="Shriji Vidhyalaya"
+          year="2016 | 69%"
+        />
       </div>
     ),
   },
@@ -100,98 +202,103 @@ const TAB_DATA: TabData[] = [
     title: "Certifications",
     id: "certifications",
     content: (
-      <ul className="space-y-3">
-        {[
-          "ChatGPT Workshop",
-          "BrainyBeams Technology",
-          "JavaScript Algorithms & Data Structures - freeCodeCamp",
-          "PHP Programming Course",
-        ].map((cert) => (
-          <li
-            key={cert}
-            className="bg-[#0D1524] p-3 text-sm rounded-lg border border-[#1e2a3e]
-              hover:border-blue-500 hover:shadow-[0_0_10px_rgba(29,78,216,0.5)]
-              transition-all duration-300"
-          >
-            {cert}
-          </li>
-        ))}
-      </ul>
+      <div className="space-y-4">
+        <Card name="ChatGPT Workshop – BrainyBeams" icon={<SiOpenai />} />
+        <Card
+          name="JavaScript Algorithms & Data Structures – freeCodeCamp"
+          icon={<SiJavascript />}
+        />
+        <Card name="PHP Programming Certification" icon={<SiGithub />} />
+      </div>
     ),
   },
 ];
 
 const About: FC = () => {
-  const [tab, setTab] = useState<string>("skills");
-  const [isPending, startTransition] = useTransition();
-
-  const handleTabChange = (id: string) => {
-    startTransition(() => {
-      setTab(id);
-    });
-  };
-
-  const activeTabContent = TAB_DATA.find((t) => t.id === tab)?.content;
+  const [tab, setTab] = useState("skills");
+  const [, startTransition] = useTransition();
 
   return (
-    <section className="border border-black/10 dark:border-white/10 rounded-4xl shadow-2xl bg-[#F6F6F6] dark:bg-[#151515] text-center text-black dark:text-white my-7 py-4 sm:my-20 px-4" id="about">
-      <h2 className="text-2xl sm:text-4xl font-bold pb-6 sm:py-6">
-        About Me
-      </h2>
+    <section
+      id="about"
+      className=" mx-auto my-24 px-6 py-16 rounded-4xl bg-white border border-gray-200 dark:bg-[#151515] dark:border-white/10"
+    >
+      <Reveal>
+        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-14 text-gray-900 dark:text-white">
+          About Me
+        </h2>
+      </Reveal>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 items-center gap-10 sm:gap-12">
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="flex justify-center"
-        >
+      {/* IMAGE + TEXT */}
+      <div className="grid md:grid-cols-2 gap-14 mb-20 items-center">
+        <Reveal>
           <Image
             src="/images/about-image.png"
-            width={450}
-            height={450}
-            className="rounded-4xl w-full hover:shadow-[0_0_15px_rgba(29,78,216,0.35)] transition"
-            alt="About Me"
+            width={520}
+            height={520}
+            alt="About"
+            className="rounded-3xl w-full max-w-[520px] mx-auto
+              border border-gray-200 dark:border-white/10"
           />
-        </motion.div>
-        <div className="text-left flex flex-col h-full">
-          <p className="text-sm sm:text-base md:text-lg leading-relaxed text-[#1a2a48] dark:text-[#c7d7f5]">
-            I am a passionate MERN Stack Developer focused on creating fast,
-            accessible, and visually engaging web applications. I specialize in
-            building pixel-perfect UI with clean, scalable code — combining
-            <b className="text-black dark:text-white font-semibold"> JavaScript, TypeScript, Next.js,
-              React, Node.js, Express, MongoDB</b> and modern styling frameworks.
-            <br /><br />
-            I continuously explore new technologies, optimize performance, and love
-            collaborating with teams to turn ideas into successful real-world digital
-            products.
-          </p>
-          <div className="flex flex-row justify-start mt-10 p-1">
-            {TAB_DATA.map((t) => (
-              <TabButton
-                key={t.id}
-                selectTab={() => handleTabChange(t.id)}
-                active={tab === t.id}
-              >
-                {t.title}
-              </TabButton>
-            ))}
+        </Reveal>
+
+        <Reveal delay={0.1}>
+          <div className="max-w-xl space-y-4 leading-relaxed text-gray-700 dark:text-[#c7d7f5]">
+            <p>
+              I’m a <b>MERN Stack Developer</b> with strong experience in building
+              scalable, AI-powered, cloud-ready applications for real-world use cases.
+              I focus on writing clean, maintainable code and designing systems that
+              scale efficiently in production environments.
+            </p>
+
+            <p>
+              My expertise spans full-stack development, backend architecture,
+              REST & GraphQL APIs, database design, and performance optimization.
+              I actively work with modern frameworks like <b>React</b> and <b>Next.js</b>
+              to deliver fast, accessible, and visually polished user experiences.
+            </p>
+
+            <p>
+              Beyond traditional development, I integrate AI solutions, automate
+              workflows, and leverage cloud & DevOps tools such as <b>AWS</b>, <b>Docker</b>,
+              and CI/CD pipelines to improve system reliability and developer productivity.
+            </p>
+
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              My goal is to build software that is not only functional, but scalable,
+              secure, and future-ready.
+            </p>
           </div>
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={tab}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.25 }}
-              className="mt-8"
-            >
-              {activeTabContent}
-            </motion.div>
-          </AnimatePresence>
-        </div>
+        </Reveal>
       </div>
+
+      {/* Tabs */}
+      <Reveal>
+        <div className="flex flex-wrap justify-center gap-3 mb-10">
+          {TAB_DATA.map((t) => (
+            <TabButton
+              key={t.id}
+              active={tab === t.id}
+              selectTab={() => startTransition(() => setTab(t.id))}
+            >
+              {t.title}
+            </TabButton>
+          ))}
+        </div>
+      </Reveal>
+
+      {/* Content */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={tab}
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -14 }}
+          transition={{ duration: 0.3 }}
+        >
+          {TAB_DATA.find((t) => t.id === tab)?.content}
+        </motion.div>
+      </AnimatePresence>
     </section>
   );
 };

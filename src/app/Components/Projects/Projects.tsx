@@ -130,7 +130,10 @@ const Projects: FC = () => {
 
 
   return (
-    <section className="border border-black/10 dark:border-white/10 rounded-4xl shadow-2xl bg-[#F6F6F6] dark:bg-[#151515] text-center text-black dark:text-white my-7 py-4 sm:my-20 px-4" id="projects">
+    <section
+      id="projects"
+      className="border border-black/10 dark:border-white/10 rounded-4xl shadow-2xl bg-[#F6F6F6] dark:bg-[#151515] text-center text-black dark:text-white py-4 sm:my-20 px-4"
+    >
       <h2 className="text-2xl sm:text-4xl font-bold pb-6 sm:py-6">
         My Projects
       </h2>

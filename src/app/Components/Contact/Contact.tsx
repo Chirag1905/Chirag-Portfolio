@@ -8,6 +8,7 @@ import axios from "axios";
 import { SubmitHandler, useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import NeonButton from "../../utils/NeonButton";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 interface ContactFormData {
   email: string;
@@ -57,8 +58,8 @@ const Contact: FC = () => {
       </h2>
 
       <div className="grid sm:grid-cols-2 sm:px-10 sm:py-10 gap-4 relative">
-        <div className="to-transparent rounded-full h-80 w-80 z-0 blur-lg absolute top-100 left-40 transform -translate-x-1/2 -translate-1/2
-          bg-[radial-gradient(ellipse_at_center,#581c87,#581c8700)] dark:bg-[radial-gradient(ellipse_at_center,#581c87,#581c8700)]"/>
+        {/* <div className="to-transparent rounded-full h-80 w-80 z-0 blur-lg absolute top-100 left-40 transform -translate-x-1/2 -translate-1/2
+          bg-[radial-gradient(ellipse_at_center,#581c87,#581c8700)] dark:bg-[radial-gradient(ellipse_at_center,#581c87,#581c8700)]"/> */}
         {/* Left Section */}
         <div className="z-10 text-left">
           <h5 className="text-base sm:text-xl font-bold text-black dark:text-white my-2">
@@ -72,10 +73,10 @@ const Contact: FC = () => {
 
           <div className="flex flex-row gap-2">
             <Link href="https://github.com/Chirag1905?tab=repositories" target="_blank">
-              <Image src={GithubIcon} alt="Github Icon" />
+              <FaGithub className="text-black dark:text-white" size={40} />
             </Link>
             <Link href="https://www.linkedin.com/in/chirag-vadhavana-7586ab225" target="_blank">
-              <Image src={LinkedinIcon} alt="Linkedin Icon" />
+              <FaLinkedin className="text-black dark:text-white" size={40} />
             </Link>
           </div>
         </div>
@@ -98,7 +99,7 @@ const Contact: FC = () => {
                     message: "Invalid email address",
                   },
                 })}
-                className="bg-[#eee8e8] dark:bg-[#18191E] border border-[#cacee6] dark:border-[#33353F] placeholder-[#484b4e] dark:placeholder-[#9CA2A9] text-gray-900 dark:text-white text-sm rounded-xl block w-full p-2.5"
+                className="bg-[#eee8e8] dark:bg-[#18191E] border border-[#cacee6] dark:border-[#33353F] placeholder-[#484b4e] dark:placeholder-[#9CA2A9] text-gray-900 dark:text-white text-sm rounded-2xl block w-full p-2.5"
                 placeholder="yourname@example.com"
               />
               {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
@@ -113,7 +114,7 @@ const Contact: FC = () => {
                 id="subject"
                 type="text"
                 {...register("subject", { required: "Subject is required" })}
-                className="bg-[#eee8e8] dark:bg-[#18191E] border border-[#cacee6] dark:border-[#33353F] text-gray-900 dark:text-white text-sm rounded-xl block w-full p-2.5"
+                className="bg-[#eee8e8] dark:bg-[#18191E] border border-[#cacee6] dark:border-[#33353F] text-gray-900 dark:text-white text-sm rounded-2xl block w-full p-2.5"
                 placeholder="Job Opportunity Inquiry"
               />
               {errors.subject && <p className="text-red-500 text-sm">{errors.subject.message}</p>}
@@ -127,7 +128,7 @@ const Contact: FC = () => {
               <textarea
                 id="message"
                 {...register("message", { required: "Message is required" })}
-                className="bg-[#eee8e8] dark:bg-[#18191E] border border-[#cacee6] dark:border-[#33353F] text-gray-900 dark:text-white text-sm rounded-xl block w-full p-2.5"
+                className="bg-[#eee8e8] dark:bg-[#18191E] border border-[#cacee6] dark:border-[#33353F] text-gray-900 dark:text-white text-sm rounded-2xl block w-full p-2.5"
                 placeholder="Hello Chirag, we would like to connect regarding a potential role..."
                 rows={4}
               />
@@ -138,7 +139,7 @@ const Contact: FC = () => {
               text="Send Message"
               showLoader={loading}
               disabled={loading}
-              className="w-full py-2.5 px-5 text-sm rounded-xl mt-2"
+              className="w-full py-2.5 px-5 text-sm rounded-2xl mt-2"
             />
           </form>
         </div>

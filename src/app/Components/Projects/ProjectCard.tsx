@@ -106,12 +106,12 @@ const ProjectCard: FC<ProjectCardProps> = ({
         <motion.button
           whileTap={{ scale: 0.98 }}
           onClick={() => onClickMore?.()}
-          className="w-full mt-4 py-2.5 text-sm font-semibold rounded-xl
+          className="w-full mt-4 py-2.5 text-sm font-semibold rounded-2xl
             bg-gray-100 dark:bg-white/5 
             text-gray-900 dark:text-white
             hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600
             transition-all duration-300 ease-out
-            border border-transparent hover:border-blue-400 shadow-sm"
+            border border-transparent shadow-sm"
         >
           View Details
         </motion.button>

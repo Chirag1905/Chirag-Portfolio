@@ -1,10 +1,8 @@
 "use client";
 
-import { FC, JSX, useState, useTransition } from "react";
+import { FC, JSX, useState } from "react";
 import Image from "next/image";
-import { AnimatePresence, motion } from "framer-motion";
 import Reveal from "@/app/utils/Reveal";
-import TabButton from "./TabButton";
 
 import {
   SiHtml5,
@@ -34,234 +32,127 @@ import {
   SiDocker,
   SiKubernetes,
   SiOpenai,
+  SiGooglegemini,
+  SiJfrogpipelines,
+  SiOllama,
 } from "react-icons/si";
 import { FaAws } from "react-icons/fa";
 import { TbBrandZulip } from "react-icons/tb";
 
-/* ---------------- Types ---------------- */
-interface TabData {
-  title: string;
-  id: string;
-  content: JSX.Element;
-}
-
 /* ---------------- Card ---------------- */
-const Card = ({
-  name,
-  icon,
-  link,
-}: {
-  name: string;
-  icon: JSX.Element;
-  link?: string;
-}) => {
-  const Wrapper: any = link ? "a" : "div";
+const Card = ({ name, icon }: { name: string; icon: JSX.Element }) => (
+  <div className="flex items-center gap-2.5 p-2.5 rounded-xl border border-black/20 dark:border-white/20 bg-white/60 dark:bg-black/30 hover:scale-105 transition-transform">
+    <span className="text-lg shrink-0">{icon}</span>
+    <span className="text-sm font-medium truncate">{name}</span>
+  </div>
+);
 
-  return (
-    <Wrapper
-      {...(link && {
-        href: link,
-        target: "_blank",
-        rel: "noopener noreferrer",
-      })}
-      className={`
-        flex items-center gap-3 p-4 rounded-xl
-        bg-white border border-gray-200 text-gray-800
-        dark:bg-[#0D1524] dark:border-[#1e2a3e] dark:text-[#c7d7f5]
-        transition-all duration-200
-        ${link ? "cursor-pointer hover:scale-[1.03] hover:border-blue-500" : ""}
-      `}
-    >
-      <span className="text-lg">{icon}</span>
-      <span className="font-medium">{name}</span>
-    </Wrapper>
-  );
-};
-
-/* ---------------- Timeline Item ---------------- */
-const TimelineItem = ({
+/* ---------------- Skill Group ---------------- */
+const SkillGroup = ({
   title,
-  place,
-  year,
+  children,
 }: {
   title: string;
-  place: string;
-  year: string;
+  children: JSX.Element | JSX.Element[];
 }) => (
-  <div className="relative pl-6">
-    <div className="absolute left-0 top-1.5 h-3 w-3 rounded-full bg-blue-500" />
-    <div className="bg-white dark:bg-[#0D1524] border border-gray-200 dark:border-[#1e2a3e] rounded-xl p-4">
-      <h4 className="font-semibold text-gray-900 dark:text-white">{title}</h4>
-      <p className="text-sm text-gray-600 dark:text-gray-400">{place}</p>
-      <p className="text-sm text-blue-500 mt-1">{year}</p>
+  <div className="rounded-3xl border border-black/20 dark:border-white/20 bg-white/60 dark:bg-black/30 p-4 sm:p-6 space-y-4">
+    <h3 className="text-lg font-semibold">{title}</h3>
+    <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
+      {children}
     </div>
   </div>
 );
 
-/* ---------------- Tabs Data ---------------- */
-const TAB_DATA: TabData[] = [
-  {
-    title: "Skills",
-    id: "skills",
-    content: (
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Card name="HTML" icon={<SiHtml5 />} link="https://developer.mozilla.org/en-US/docs/Web/HTML" />
-        <Card name="CSS" icon={<SiCss3 />} link="https://developer.mozilla.org/en-US/docs/Web/CSS" />
-        <Card name="SCSS" icon={<SiSass />} link="https://sass-lang.com" />
-        <Card name="LESS" icon={<SiLess />} link="https://lesscss.org" />
-        <Card name="Bootstrap" icon={<SiBootstrap />} link="https://getbootstrap.com" />
-        <Card name="Tailwind CSS" icon={<SiTailwindcss />} link="https://tailwindcss.com" />
-        <Card name="JavaScript" icon={<SiJavascript />} link="https://developer.mozilla.org/en-US/docs/Web/JavaScript" />
-        <Card name="TypeScript" icon={<SiTypescript />} link="https://www.typescriptlang.org" />
-        <Card name="React.js" icon={<SiReact />} link="https://react.dev" />
-        <Card name="Next.js" icon={<SiNextdotjs />} link="https://nextjs.org" />
-        <Card name="Node.js" icon={<SiNodedotjs />} link="https://nodejs.org" />
-        <Card name="Express.js" icon={<SiExpress />} link="https://expressjs.com" />
-      </div>
-    ),
-  },
+/* ---------------- Timeline ---------------- */
+const TimelineItem = ({
+  title,
+  place,
+  location,
+  year,
+  badge,
+  align = "left",
+}: {
+  title: string;
+  place: string;
+  location?: string;
+  year: string;
+  badge?: string;
+  align?: "left" | "right";
+}) => {
+  const isLeft = align === "left";
 
-  {
-    title: "Technologies & Tools",
-    id: "tools",
-    content: (
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Card name="Git" icon={<SiGit />} link="https://git-scm.com" />
-        <Card name="GitHub" icon={<SiGithub />} link="https://github.com" />
-        <Card name="Redux Toolkit" icon={<SiRedux />} link="https://redux-toolkit.js.org" />
-        <Card name="Zustand" icon={<TbBrandZulip />} link="https://zustand.dev" />
-        <Card name="Context API" icon={<SiReact />} link="https://react.dev/reference/react/useContext" />
-        <Card name="Firebase" icon={<SiFirebase />} link="https://firebase.google.com" />
-        <Card name="Jira" icon={<SiJira />} link="https://www.atlassian.com/software/jira" />
-        <Card name="Postman" icon={<SiPostman />} link="https://www.postman.com" />
-        <Card name="Insomnia" icon={<SiInsomnia />} link="https://insomnia.rest" />
-        <Card name="Axios" icon={<SiAxios />} link="https://axios-http.com" />
-      </div>
-    ),
-  },
+  return (
+    <li className="relative flex justify-center md:justify-start w-full">
+      {/* Dot */}
+      <span className="absolute left-1/2 top-2 -translate-x-1/2 flex h-6 w-6 items-center justify-center rounded-full bg-blue-500 ring-4 sm:ring-8 ring-white/60 dark:ring-black/40 z-10">
+        <span className="h-2.5 w-2.5 rounded-full bg-white" />
+      </span>
 
-  {
-    title: "Cloud & DevOps",
-    id: "cloud",
-    content: (
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <Card name="AWS (Lambda, S3, Route53)" icon={<FaAws />} link="https://aws.amazon.com" />
-        <Card name="Docker" icon={<SiDocker />} link="https://www.docker.com" />
-        <Card name="Kubernetes" icon={<SiKubernetes />} link="https://kubernetes.io" />
-        <Card name="CI/CD Pipelines" icon={<SiGithub />} link="https://docs.github.com/en/actions" />
-        <Card name="Automation Scripts" icon={<SiGithub />} link="https://github.com/features/actions" />
-      </div>
-    ),
-  },
+      {/* Card - Full width on mobile, half width on desktop */}
+      <div
+        className={`w-full md:w-[calc(50%-2rem)] rounded-2xl border border-black/20 dark:border-white/20 bg-white/60 dark:bg-black/40 p-4 ${isLeft ? "md:mr-auto" : "md:ml-auto"
+          }`}
+      >
+        <time className="inline-block mb-2 rounded border border-black/20 dark:border-white/20 bg-white/60 dark:bg-black/40 px-2 py-0.5 text-xs font-medium">
+          {year}
+        </time>
 
-  {
-    title: "Databases & APIs",
-    id: "db",
-    content: (
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <Card name="MongoDB" icon={<SiMongodb />} link="https://www.mongodb.com" />
-        <Card name="MySQL" icon={<SiMysql />} link="https://www.mysql.com" />
-        <Card name="PostgreSQL" icon={<SiPostgresql />} link="https://www.postgresql.org" />
-        <Card name="REST APIs" icon={<SiExpress />} link="https://restfulapi.net" />
-        <Card name="GraphQL" icon={<SiGraphql />} link="https://graphql.org" />
-      </div>
-    ),
-  },
+        <h3 className="flex flex-wrap items-center gap-2 text-base sm:text-lg font-semibold mb-1">
+          {title}
+          {badge && (
+            <span className="rounded bg-blue-500/10 px-2 py-0.5 text-xs font-medium text-blue-500 border border-blue-500/30">
+              {badge}
+            </span>
+          )}
+        </h3>
 
-  {
-    title: "AI & Automation",
-    id: "ai",
-    content: (
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <Card name="OpenAI / Gemini APIs" icon={<SiOpenai />} link="https://platform.openai.com" />
-        <Card name="GitHub Copilot" icon={<SiGithub />} link="https://github.com/features/copilot" />
-        <Card name="Cursor AI" icon={<SiGithub />} link="https://cursor.sh" />
-        <Card name="Antigravity AI" icon={<SiGithub />} link="https://antigravity.ai" />
-        <Card name="Ollama (Local LLMs)" icon={<SiGithub />} link="https://ollama.com" />
+        <p className="text-sm opacity-70">
+          {place}
+          <br />
+          {location && <span className="opacity-75">{location}</span>}
+        </p>
       </div>
-    ),
-  },
-
-  {
-    title: "Education",
-    id: "education",
-    content: (
-      <div className="relative space-y-6 before:absolute before:left-[6px] before:top-0 before:h-full before:w-[2px] before:bg-gray-300 dark:before:bg-gray-700">
-        <TimelineItem
-          title="Bachelor of Engineering"
-          place="Hasmukh Goswami College (GTU)"
-          year="2019 – 2023 | 7.45 CGPA"
-        />
-        <TimelineItem
-          title="Diploma Engineering"
-          place="R.C Technical Institute (GTU)"
-          year="2016 – 2019 | 7.01 CGPA"
-        />
-        <TimelineItem
-          title="SSC"
-          place="Shriji Vidhyalaya"
-          year="2016 | 69%"
-        />
-      </div>
-    ),
-  },
-
-  {
-    title: "Certifications",
-    id: "certifications",
-    content: (
-      <div className="space-y-4">
-        <Card
-          name="ChatGPT Workshop – BrainyBeams"
-          icon={<SiOpenai />}
-        // link="https://brainybeams.com"
-        />
-        <Card
-          name="JavaScript Algorithms & Data Structures – freeCodeCamp"
-          icon={<SiJavascript />}
-        // link="https://www.freecodecamp.org"
-        />
-        <Card
-          name="PHP Programming Certification"
-          icon={<SiGithub />}
-        // link="https://www.php.net"
-        />
-      </div>
-    ),
-  },
-];
+    </li>
+  );
+};
 
 /* ---------------- Component ---------------- */
+const tabs = [
+  { id: "skills", label: "Skills" },
+  { id: "experience", label: "Experience" },
+  { id: "education", label: "Education" },
+  { id: "certifications", label: "Certifications" },
+] as const;
+
 const About: FC = () => {
-  const [tab, setTab] = useState("skills");
-  const [, startTransition] = useTransition();
+  const [activeTab, setActiveTab] =
+    useState<"skills" | "experience" | "education" | "certifications">("skills");
 
   return (
     <section
       id="about"
-      className="mx-auto px-6 py-10 rounded-4xl bg-white border border-gray-200 dark:bg-[#151515] dark:border-white/10"
+      className="glass-card border border-black/10 dark:border-white/10 rounded-4xl shadow-2xl bg-[#F6F6F6] dark:bg-[#151515] text-black dark:text-white my-10 px-4 sm:px-6 py-6 sm:py-8"
     >
       <Reveal>
-        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-14 text-gray-900 dark:text-white">
-          About Me
-        </h2>
+        <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-10">About Me</h2>
       </Reveal>
 
-      <div className="grid md:grid-cols-2 gap-14 mb-20 items-center">
+      {/* IMAGE + DESCRIPTION */}
+      <div className="grid md:grid-cols-2 gap-8 sm:gap-14 mb-12 sm:mb-16 items-center border-t border-black/10 dark:border-white/10 pt-8 sm:pt-10">
         <Reveal>
           <Image
             src="/images/about-image.png"
             width={520}
             height={520}
             alt="About"
-            className="rounded-3xl w-full max-w-[520px] mx-auto border border-gray-200 dark:border-white/10"
+            className="rounded-3xl w-full max-w-[520px] mx-auto border border-black/20 dark:border-white/10"
           />
         </Reveal>
 
         <Reveal delay={0.1}>
-          <div className="max-w-xl space-y-4 text-gray-700 dark:text-[#c7d7f5]">
+          <div className="space-y-4 text-sm sm:text-base text-gray-700 dark:text-[#c7d7f5]">
             <p>
-              I’m a <b>MERN Stack Developer</b> with strong experience in building
+              I'm a <b>MERN Stack Developer</b> with strong experience in building
               scalable, AI-powered, cloud-ready applications for real-world use cases.
               I focus on writing clean, maintainable code and designing systems that
               scale efficiently in production environments.
@@ -278,7 +169,7 @@ const About: FC = () => {
               and CI/CD pipelines to improve system reliability and developer productivity.
             </p>
 
-            <p className="text-sm text-gray-500 dark:text-gray-400">
+            <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
               My goal is to build software that is not only functional, but scalable,
               secure, and future-ready.
             </p>
@@ -286,33 +177,520 @@ const About: FC = () => {
         </Reveal>
       </div>
 
-      <Reveal>
-        <div className="flex flex-wrap justify-center gap-3 mb-10">
-          {TAB_DATA.map((t) => (
-            <TabButton
-              key={t.id}
-              active={tab === t.id}
-              selectTab={() => startTransition(() => setTab(t.id))}
-            >
-              {t.title}
-            </TabButton>
-          ))}
+      {/* CONNECTED TABS */}
+      <div className="max-w-6xl mx-auto">
+        {/* Tabs - Scrollable on mobile */}
+        <div className="overflow-x-auto scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
+          <div className="flex justify-start sm:justify-center gap-1.5 min-w-max sm:min-w-0">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`
+                  px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium rounded-t-xl whitespace-nowrap
+                  border-l border-r border-t border-black/20 dark:border-white/20 relative
+                  ${activeTab === tab.id
+                    ? "bg-white/60 dark:bg-black/15 text-blue-500 border-b-0 z-10"
+                    : "bg-transparent opacity-70 hover:opacity-100 border-b"
+                  }
+                `}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
         </div>
-      </Reveal>
 
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={tab}
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -14 }}
-          transition={{ duration: 0.3 }}
-        >
-          {TAB_DATA.find((t) => t.id === tab)?.content}
-        </motion.div>
-      </AnimatePresence>
+        {/* CONTENT BOX */}
+        <div className="rounded-b-3xl sm:rounded-tr-3xl sm:rounded-tl-3xl border border-black/20 dark:border-white/20 bg-white/60 dark:bg-black/15 backdrop-blur-xl p-4 sm:p-6 lg:p-8 -mt-[1px]">
+          {activeTab === "skills" && (
+            <div className="grid lg:grid-cols-2 gap-6 sm:gap-8">
+              <SkillGroup title="Frontend">
+                <Card name="HTML" icon={<SiHtml5 className="text-[#E34F26]" />} />
+                <Card name="CSS" icon={<SiCss3 className="text-[#1572B6]" />} />
+                <Card name="SCSS" icon={<SiSass className="text-[#CC6699]" />} />
+                <Card name="LESS" icon={<SiLess className="text-[#1D365D]" />} />
+                <Card name="Bootstrap" icon={<SiBootstrap className="text-[#7952B3]" />} />
+                <Card name="Tailwind CSS" icon={<SiTailwindcss className="text-[#38BDF8]" />} />
+                <Card name="JavaScript" icon={<SiJavascript className="text-[#F7DF1E]" />} />
+                <Card name="TypeScript" icon={<SiTypescript className="text-[#3178C6]" />} />
+                <Card name="React.js" icon={<SiReact className="text-[#61DBFB]" />} />
+                <Card name="Next.js" icon={<SiNextdotjs className="text-black dark:text-white" />} />
+              </SkillGroup>
+
+              <SkillGroup title="Backend & APIs">
+                <Card name="Node.js" icon={<SiNodedotjs className="text-[#68A063]" />} />
+                <Card name="Express.js" icon={<SiExpress className="text-gray-600 dark:text-gray-300" />} />
+                <Card name="REST APIs" icon={<SiExpress className="text-blue-500" />} />
+                <Card name="GraphQL" icon={<SiGraphql className="text-[#E10098]" />} />
+              </SkillGroup>
+
+              <SkillGroup title="State Management & Tools">
+                <Card name="Redux Toolkit" icon={<SiRedux className="text-[#764ABC]" />} />
+                <Card name="Zustand" icon={<TbBrandZulip className="text-[#2D8CFF]" />} />
+                <Card name="Git" icon={<SiGit className="text-[#F05032]" />} />
+                <Card name="GitHub" icon={<SiGithub className="text-black dark:text-white" />} />
+                <Card name="Jira" icon={<SiJira className="text-[#0052CC]" />} />
+                <Card name="Postman" icon={<SiPostman className="text-[#FF6C37]" />} />
+                <Card name="Insomnia" icon={<SiInsomnia className="text-[#5849BE]" />} />
+                <Card name="Axios" icon={<SiAxios className="text-[#5A29E4]" />} />
+              </SkillGroup>
+
+              <SkillGroup title="Databases">
+                <Card name="MongoDB" icon={<SiMongodb className="text-[#47A248]" />} />
+                <Card name="MySQL" icon={<SiMysql className="text-[#00758F]" />} />
+                <Card name="PostgreSQL" icon={<SiPostgresql className="text-[#336791]" />} />
+                <Card name="Firebase" icon={<SiFirebase className="text-[#FFCA28]" />} />
+              </SkillGroup>
+
+              <SkillGroup title="Cloud & DevOps">
+                <Card name="AWS" icon={<FaAws className="text-[#FF9900]" />} />
+                <Card name="Docker" icon={<SiDocker className="text-[#2496ED]" />} />
+                <Card name="Kubernetes" icon={<SiKubernetes className="text-[#326CE5]" />} />
+                <Card name="CI/CD Pipelines" icon={<SiJfrogpipelines className="text-[#40BE46]" />} />
+              </SkillGroup>
+
+              <SkillGroup title="AI & Automation">
+                <Card name="OpenAI" icon={<SiOpenai className="text-[#10A37F]" />} />
+                <Card name="Gemini" icon={<SiGooglegemini className="text-[#4285F4]" />} />
+                <Card name="GitHub Copilot" icon={<SiGithub className="text-black dark:text-white" />} />
+                <Card name="Cursor AI" icon={<SiGithub className="text-purple-400" />} />
+                <Card name="Ollama (Local LLMs)" icon={<SiOllama className="text-emerald-400" />} />
+              </SkillGroup>
+            </div>
+          )}
+
+          {activeTab === "education" && (
+            <div className="relative flex justify-center">
+              {/* Center line - hidden on mobile */}
+              <div className="absolute top-0 bottom-0 left-1/2 w-px bg-black/20 dark:bg-white/20 -translate-x-1/2 hidden md:block" />
+
+              <ol className="relative w-full max-w-4xl space-y-12 sm:space-y-16">
+                <TimelineItem
+                  title="B.E Engineering(GTU)"
+                  place="HashMukh Goswami College of Engineering"
+                  location="Vehlal, Ahmedabad, Gujarat"
+                  year="2019 – 2023"
+                  badge="Passout"
+                  align="left"
+                />
+                <TimelineItem
+                  title="Diploma Engineering(GTU)"
+                  place="R.C Technical Institute"
+                  location="Sola, Ahmedabad, Gujarat"
+                  year="2016 – 2019"
+                  badge="Passout"
+                  align="right"
+                />
+                <TimelineItem
+                  title="SSC"
+                  place="Shriji Vidhyalaya"
+                  location="Bapunagar, Ahmedabad, Gujarat"
+                  year="2016 | 69%"
+                  badge="Passout"
+                  align="left"
+                />
+              </ol>
+            </div>
+          )}
+
+          {activeTab === "experience" && (
+            <div className="relative flex justify-center">
+              {/* Center line - hidden on mobile */}
+              <div className="absolute top-0 bottom-0 left-1/2 w-px bg-black/20 dark:bg-white/20 -translate-x-1/2 hidden md:block" />
+
+              <ol className="relative w-full max-w-4xl space-y-12 sm:space-y-16">
+                <TimelineItem
+                  title="Mern Stack Developer - Onsite"
+                  place="iFlair Web Technologies Pvt.Ltd"
+                  location="Paladi, Ahmedabad, Gujarat"
+                  year="Jan 2023 – Present"
+                  badge="Current"
+                  align="left"
+                />
+                <TimelineItem
+                  title="JavaScript Internship - Onsite"
+                  place="iFlair Web Technologies Pvt.Ltd"
+                  location="Paladi, Ahmedabad, Gujarat"
+                  year="Nov 2022 – Jan 2023"
+                  badge="Past"
+                  align="right"
+                />
+                <TimelineItem
+                  title="JavaScript Developer - Remote"
+                  place="Techvein IT Solution Pvt.Ltd"
+                  location="Jaipur"
+                  year="May 2022 – Nov 2022"
+                  badge="Past"
+                  align="left"
+                />
+              </ol>
+            </div>
+          )}
+
+          {activeTab === "certifications" && (
+            <div className="space-y-4 max-w-2xl mx-auto">
+              <Card name="ChatGPT Workshop – BrainyBeams" icon={<SiOpenai className="text-[#10A37F]" />} />
+              <Card name="JavaScript Algorithms – freeCodeCamp" icon={<SiJavascript className="text-[#F7DF1E]" />} />
+              <Card name="PHP Programming Certification" icon={<SiGithub className="text-black dark:text-white" />} />
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Add this to your global CSS for hiding scrollbar */}
+      <style jsx global>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
     </section>
   );
 };
 
 export default About;
+
+// "use client";
+
+// import { FC, JSX, useState } from "react";
+// import Image from "next/image";
+// import Reveal from "@/app/utils/Reveal";
+
+// import {
+//   SiHtml5,
+//   SiCss3,
+//   SiSass,
+//   SiLess,
+//   SiBootstrap,
+//   SiTailwindcss,
+//   SiJavascript,
+//   SiTypescript,
+//   SiReact,
+//   SiNextdotjs,
+//   SiNodedotjs,
+//   SiExpress,
+//   SiRedux,
+//   SiGithub,
+//   SiGit,
+//   SiFirebase,
+//   SiJira,
+//   SiPostman,
+//   SiInsomnia,
+//   SiAxios,
+//   SiMongodb,
+//   SiMysql,
+//   SiPostgresql,
+//   SiGraphql,
+//   SiDocker,
+//   SiKubernetes,
+//   SiOpenai,
+//   SiGooglegemini,
+//   SiJfrogpipelines,
+//   SiOllama,
+// } from "react-icons/si";
+// import { FaAws } from "react-icons/fa";
+// import { TbBrandZulip } from "react-icons/tb";
+
+// /* ---------------- Card ---------------- */
+// const Card = ({ name, icon }: { name: string; icon: JSX.Element }) => (
+//   <div className="flex items-center gap-2.5 p-2.5 rounded-xl border border-black/20 dark:border-white/20 bg-white/60 dark:bg-black/30 hover:scale-105 transition-transform">
+//     <span className="text-lg">{icon}</span>
+//     <span className="text-sm font-medium">{name}</span>
+//   </div>
+// );
+
+// /* ---------------- Skill Group ---------------- */
+// const SkillGroup = ({
+//   title,
+//   children,
+// }: {
+//   title: string;
+//   children: JSX.Element | JSX.Element[];
+// }) => (
+//   <div className="rounded-3xl border border-black/20 dark:border-white/20 bg-white/60 dark:bg-black/30 p-6 space-y-4">
+//     <h3 className="text-lg font-semibold">{title}</h3>
+//     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+//       {children}
+//     </div>
+//   </div>
+// );
+
+// /* ---------------- Timeline ---------------- */
+// const TimelineItem = ({
+//   title,
+//   place,
+//   location,
+//   year,
+//   badge,
+//   align = "left",
+// }: {
+//   title: string;
+//   place: string;
+//   location?: string;
+//   year: string;
+//   badge?: string;
+//   align?: "left" | "right";
+// }) => {
+//   const isLeft = align === "left";
+
+//   return (
+//     <li className={`relative flex ${isLeft ? "justify-start" : "justify-end"} w-full`}>
+//       {/* Dot */}
+//       <span className="absolute left-1/2 top-2 -translate-x-1/2 flex h-6 w-6 items-center justify-center rounded-full bg-blue-500 ring-8 ring-white/60 dark:ring-black/40 z-10">
+//         <span className="h-2.5 w-2.5 rounded-full bg-white" />
+//       </span>
+
+//       {/* Card */}
+//       <div
+//         className={`w-[calc(50%-2rem)] rounded-2xl border border-black/20 dark:border-white/20 bg-white/60 dark:bg-black/40 p-4`}
+//       >
+//         <time className="inline-block mb-2 rounded border border-black/20 dark:border-white/20 bg-white/60 dark:bg-black/40 px-2 py-0.5 text-xs font-medium">
+//           {year}
+//         </time>
+
+//         <h3 className="flex items-center gap-2 text-lg font-semibold">
+//           {title}
+//           {badge && (
+//             <span className="rounded bg-blue-500/10 px-2 py-0.5 text-xs font-medium text-blue-500 border border-blue-500/30">
+//               {badge}
+//             </span>
+//           )}
+//         </h3>
+
+//         <p className="text-sm opacity-70">
+//           {place}
+//           <br />
+//           {location && <span className="opacity-75">{location}</span>}
+//         </p>
+//       </div>
+//     </li>
+//   );
+// };
+
+
+// /* ---------------- Component ---------------- */
+// const tabs = [
+//   { id: "skills", label: "Skills" },
+//   { id: "experience", label: "Experience" },
+//   { id: "education", label: "Education" },
+//   { id: "certifications", label: "Certifications" },
+// ] as const;
+
+// const About: FC = () => {
+//   const [activeTab, setActiveTab] =
+//     useState<"skills" | "experience" | "education" | "certifications">("skills");
+
+//   return (
+//     <section
+//       id="about"
+//       className="glass-card border border-black/10 dark:border-white/10 rounded-4xl shadow-2xl bg-[#F6F6F6] dark:bg-[#151515] text-black dark:text-white my-10 px-4 py-6"
+//     >
+//       <Reveal>
+//         <h2 className="text-3xl font-bold text-center mb-10">About Me</h2>
+//       </Reveal>
+
+//       {/* IMAGE + DESCRIPTION */}
+//       <div className="grid md:grid-cols-2 gap-14 mb-16 items-center border-t border-black/10 dark:border-white/10 pt-10">
+//         <Reveal>
+//           <Image
+//             src="/images/about-image.png"
+//             width={520}
+//             height={520}
+//             alt="About"
+//             className="rounded-3xl w-full max-w-[520px] mx-auto border border-black/20 dark:border-white/10"
+//           />
+//         </Reveal>
+
+//         <Reveal delay={0.1}>
+//           <div className="space-y-4 text-gray-700 dark:text-[#c7d7f5]">
+//             <p>
+//               I’m a <b>MERN Stack Developer</b> with strong experience in building
+//               scalable, AI-powered, cloud-ready applications for real-world use cases.
+//               I focus on writing clean, maintainable code and designing systems that
+//               scale efficiently in production environments.
+//             </p>
+//             <p>
+//               My expertise spans full-stack development, backend architecture,
+//               REST & GraphQL APIs, database design, and performance optimization.
+//               I actively work with modern frameworks like <b>React</b> and <b>Next.js</b>
+//               to deliver fast, accessible, and visually polished user experiences.
+//             </p>
+//             <p>
+//               Beyond traditional development, I integrate AI solutions, automate
+//               workflows, and leverage cloud & DevOps tools such as <b>AWS</b>, <b>Docker</b>,
+//               and CI/CD pipelines to improve system reliability and developer productivity.
+//             </p>
+
+//             <p className="text-sm text-gray-500 dark:text-gray-400">
+//               My goal is to build software that is not only functional, but scalable,
+//               secure, and future-ready.
+//             </p>
+//           </div>
+//         </Reveal>
+//       </div>
+
+//       {/* CONNECTED TABS */}
+//       <div className="max-w-6xl mx-auto">
+//         <div className="flex justify-center gap-1">
+//           {tabs.map((tab) => (
+//             <button
+//               key={tab.id}
+//               onClick={() => setActiveTab(tab.id)}
+//               className={`
+//           px-6 py-2 text-sm font-medium rounded-t-xl
+//           border-l border-r border-t border-black/20 dark:border-white/20 relative
+//           ${activeTab === tab.id
+//                   ? "bg-white/60 dark:bg-black/15 text-blue-500 border-b-0 z-10"
+//                   : "bg-transparent opacity-70 hover:opacity-100 border-b"
+//                 }
+//         `}
+//             >
+//               {tab.label}
+//             </button>
+//           ))}
+//         </div>
+
+//         {/* CONTENT BOX */}
+//         <div className="rounded-b-3xl rounded-tr-3xl rounded-tl-3xl border border-black/20 dark:border-white/20 bg-white/60 dark:bg-black/15 backdrop-blur-xl p-8 -mt-[1px]">   {activeTab === "skills" && (
+//           <div className="grid lg:grid-cols-2 gap-8">
+//             <SkillGroup title="Frontend">
+//               <Card name="HTML" icon={<SiHtml5 className="text-[#E34F26]" />} />
+//               <Card name="CSS" icon={<SiCss3 className="text-[#1572B6]" />} />
+//               <Card name="SCSS" icon={<SiSass className="text-[#CC6699]" />} />
+//               <Card name="LESS" icon={<SiLess className="text-[#1D365D]" />} />
+//               <Card name="Bootstrap" icon={<SiBootstrap className="text-[#7952B3]" />} />
+//               <Card name="Tailwind CSS" icon={<SiTailwindcss className="text-[#38BDF8]" />} />
+//               <Card name="JavaScript" icon={<SiJavascript className="text-[#F7DF1E]" />} />
+//               <Card name="TypeScript" icon={<SiTypescript className="text-[#3178C6]" />} />
+//               <Card name="React.js" icon={<SiReact className="text-[#61DBFB] " />} />
+//               <Card name="Next.js" icon={<SiNextdotjs className="text-black dark:text-white" />} />
+//             </SkillGroup>
+
+//             <SkillGroup title="Backend & APIs">
+//               <Card name="Node.js" icon={<SiNodedotjs className="text-[#68A063]" />} />
+//               <Card name="Express.js" icon={<SiExpress className="text-gray-600 dark:text-gray-300" />} />
+//               <Card name="REST APIs" icon={<SiExpress className="text-blue-500" />} />
+//               <Card name="GraphQL" icon={<SiGraphql className="text-[#E10098]" />} />
+//             </SkillGroup>
+
+//             <SkillGroup title="State Management & Tools">
+//               <Card name="Redux Toolkit" icon={<SiRedux className="text-[#764ABC]" />} />
+//               <Card name="Zustand" icon={<TbBrandZulip className="text-[#2D8CFF]" />} />
+//               <Card name="Git" icon={<SiGit className="text-[#F05032]" />} />
+//               <Card name="GitHub" icon={<SiGithub className="text-black dark:text-white" />} />
+//               <Card name="Jira" icon={<SiJira className="text-[#0052CC]" />} />
+//               <Card name="Postman" icon={<SiPostman className="text-[#FF6C37]" />} />
+//               <Card name="Insomnia" icon={<SiInsomnia className="text-[#5849BE]" />} />
+//               <Card name="Axios" icon={<SiAxios className="text-[#5A29E4]" />} />
+//             </SkillGroup>
+
+//             <SkillGroup title="Databases">
+//               <Card name="MongoDB" icon={<SiMongodb className="text-[#47A248]" />} />
+//               <Card name="MySQL" icon={<SiMysql className="text-[#00758F]" />} />
+//               <Card name="PostgreSQL" icon={<SiPostgresql className="text-[#336791]" />} />
+//               <Card name="Firebase" icon={<SiFirebase className="text-[#FFCA28]" />} />
+//             </SkillGroup>
+
+//             <SkillGroup title="Cloud & DevOps">
+//               <Card name="AWS" icon={<FaAws className="text-[#FF9900]" />} />
+//               <Card name="Docker" icon={<SiDocker className="text-[#2496ED]" />} />
+//               <Card name="Kubernetes" icon={<SiKubernetes className="text-[#326CE5]" />} />
+//               <Card name="CI/CD Pipelines" icon={<SiJfrogpipelines className="text-[#40BE46]" />} />
+//             </SkillGroup>
+
+//             <SkillGroup title="AI & Automation">
+//               <Card name="OpenAI" icon={<SiOpenai className="text-[#10A37F]" />} />
+//               <Card name="Gemini" icon={<SiGooglegemini className="text-[#4285F4]" />} />
+//               <Card name="GitHub Copilot" icon={<SiGithub className="text-black dark:text-white" />} />
+//               <Card name="Cursor AI" icon={<SiGithub className="text-purple-400" />} />
+//               <Card name="Ollama (Local LLMs)" icon={<SiOllama className="text-emerald-400" />} />
+//             </SkillGroup>
+//           </div>
+//         )}
+
+//           {activeTab === "education" && (
+//             <div className="relative flex justify-center">
+//               {/* Center line */}
+//               <div className="absolute top-0 bottom-0 left-1/2 w-px bg-black/20 dark:bg-white/20 -translate-x-1/2" />
+
+//               <ol className="relative w-full max-w-4xl space-y-16">
+//                 <TimelineItem
+//                   title="B.E Engineering(GTU)"
+//                   place="HashMukh Goswami College of Engineering"
+//                   location="Vehlal, Ahmedabad, Gujarat"
+//                   year="2019 – 2023"
+//                   badge="Passout"
+//                   align="left"
+//                 />
+//                 <TimelineItem
+//                   title="Diploma Engineering(GTU)"
+//                   place="R.C Technical Institute"
+//                   location="Sola, Ahmedabad, Gujarat"
+//                   year="2016 – 2019"
+//                   badge="Passout"
+//                   align="right"
+//                 />
+//                 <TimelineItem
+//                   title="SSC"
+//                   place="Shriji Vidhyalaya"
+//                   location="Bapunagar, Ahmedabad, Gujarat"
+//                   year="2016 | 69%"
+//                   badge="Passout"
+//                   align="left"
+//                 />
+//               </ol>
+//             </div>
+//           )}
+
+
+//           {activeTab === "experience" && (
+//             <div className="relative flex justify-center">
+//               {/* Center line */}
+//               <div className="absolute top-0 bottom-0 left-1/2 w-px bg-black/20 dark:bg-white/20 -translate-x-1/2" />
+
+//               <ol className="relative w-full max-w-4xl space-y-16">
+//                 <TimelineItem
+//                   title="Mern Stack Developer - Onsite"
+//                   place="iFlair Web Technologies Pvt.Ltd"
+//                   location="Paladi, Ahmedabad, Gujarat"
+//                   year="Jan 2023 – Present"
+//                   badge="Current"
+//                   align="left"
+//                 />
+//                 <TimelineItem
+//                   title="JavaScript Internship - Onsite"
+//                   place="iFlair Web Technologies Pvt.Ltd"
+//                   location="Paladi, Ahmedabad, Gujarat"
+//                   year="Nov 2022 – Jan 2023"
+//                   badge="Past"
+//                   align="right"
+//                 />
+//                 <TimelineItem
+//                   title="JavaScript Developer - Remote"
+//                   place="Techvein IT Solution Pvt.Ltd"
+//                   location="Jaipur"
+//                   year="May 2022 – Nov 2022"
+//                   badge="Past"
+//                   align="left"
+//                 />
+//               </ol>
+//             </div>
+//           )}
+//           {activeTab === "certifications" && (
+//             <div className="space-y-4">
+//               <Card name="ChatGPT Workshop – BrainyBeams" icon={<SiOpenai />} />
+//               <Card name="JavaScript Algorithms – freeCodeCamp" icon={<SiJavascript />} />
+//               <Card name="PHP Programming Certification" icon={<SiGithub />} />
+//             </div>
+//           )}
+//         </div>
+//       </div>
+//     </section >
+//   );
+// };
+
+// export default About;

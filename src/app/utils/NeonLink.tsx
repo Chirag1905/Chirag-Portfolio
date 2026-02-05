@@ -6,19 +6,21 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline";
 interface Props {
     text: string;
     link: string;
+    className?: string; // Add optional className
 }
 
-const NeonLink = ({ text, link }: Props) => {
+const NeonLink = ({ text, link, className = "" }: Props) => {
     return (
         <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="
+            className={`
     relative inline-flex items-center justify-center
     px-8 py-3 rounded-full font-semibold text-white
     bg-linear-to-r from-[#0046FF] via-[#1E8FFF] to-[#00E1B9]
     overflow-hidden transition-all duration-300
-  "
+    ${className}
+  `}
         >
             {/* Outer Blue Glow */}
             <div className="

@@ -8,6 +8,7 @@ import NeonButton from "../../utils/NeonButton";
 import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 import { SiFreelancer } from "react-icons/si";
 import Reveal from "@/app/utils/Reveal";
+import { FaDownload } from "react-icons/fa6";
 
 interface ContactFormData {
   email: string;
@@ -120,6 +121,15 @@ const Contact: FC = () => {
               className="hover:scale-110 transition-transform duration-200"
             >
               <SiFreelancer size={36} />
+            </Link>
+
+            <Link
+              href="https://www.freelancer.in/u/chiragvadhavana"
+              target="_blank"
+              aria-label="Resume Download"
+              className="hover:scale-110 transition-transform duration-200"
+            >
+              <FaDownload size={30} />
             </Link>
           </div>
         </div>

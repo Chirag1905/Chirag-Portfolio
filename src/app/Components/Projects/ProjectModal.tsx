@@ -77,7 +77,7 @@ const ProjectModal: FC<ModalProps> = ({ isOpen, onClose, project }) => {
         <AnimatePresence>
             {/* BACKDROP */}
             <motion.div
-                className="fixed inset-0 bg-black/10 dark:bg-black/70 backdrop-blur-xl flex items-center justify-center z-9999"
+                className="fixed inset-0 backdrop-blur-xl flex items-center justify-center z-9999"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -85,9 +85,7 @@ const ProjectModal: FC<ModalProps> = ({ isOpen, onClose, project }) => {
             >
                 {/* MODAL */}
                 <motion.div
-                    className="relative max-w-5xl w-full
-            bg-white text-black
-            dark:bg-[#0A1224]/90 dark:text-white
+                    className="glass relative max-w-5xl w-full
             border border-gray-300 dark:border-blue-500/40
             shadow-2xl rounded-3xl p-6 backdrop-blur-2xl"
                     initial={{ opacity: 0, scale: 0.8, y: 30 }}

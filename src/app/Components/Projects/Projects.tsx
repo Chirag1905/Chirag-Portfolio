@@ -20,6 +20,18 @@ interface ProjectItem {
 const projectsData: ProjectItem[] = [
   {
     id: 1,
+    title: "Zuno AI",
+    technologies: "Next.js, Ollama (Local LLM), React Hook Form, NodeMailer, Tailwind CSS",
+    smallDescription: "An AI chat assistant powered by a local LLM using Ollama.",
+    longDescription:
+      "Zuno AI is a privacy-focused AI chat assistant built with Next.js and powered by a locally hosted Large Language Model using Ollama. The application enables real-time conversational AI without relying on third-party cloud APIs, ensuring better data control and low-latency responses. It features a clean, responsive UI, smooth animations with Framer Motion, and optimized client-side rendering. A secure contact system is implemented using React Hook Form and NodeMailer. Zuno AI is designed as a scalable foundation for future enhancements such as chat history, prompt presets, and multi-model LLM support.",
+    image: "/images/projects/1.png",
+    tag: ["All", "Web"],
+    gitUrl: "https://github.com/Chirag1905/zuno-ai.git",
+    previewUrl: "https://zuno-ten.vercel.app/",
+  },
+  {
+    id: 2,
     title: "Next.js Portfolio",
     technologies: "Next.js, React Hook Form, Node Mailer",
     smallDescription: "A clean and elegant developer portfolio website.",
@@ -28,10 +40,10 @@ const projectsData: ProjectItem[] = [
     image: "/images/projects/1.png",
     tag: ["All", "Web"],
     gitUrl: "https://github.com/Chirag1905/Next-Portfolio.git",
-    previewUrl: "/",
+    previewUrl: "https://chiragvadhavanaportfolio.vercel.app/",
   },
   {
-    id: 2,
+    id: 3,
     title: "E-commerce Application",
     technologies: "React.js, Context API, LocalStorage",
     smallDescription: "A dynamic multi-page online shopping web app.",
@@ -43,7 +55,7 @@ const projectsData: ProjectItem[] = [
     previewUrl: "/",
   },
   {
-    id: 3,
+    id: 4,
     title: "React Chat App",
     technologies: "React.js, Firebase, Firestore, Authentication",
     smallDescription: "A real-time chat application using Firebase.",
@@ -55,7 +67,7 @@ const projectsData: ProjectItem[] = [
     previewUrl: "/",
   },
   {
-    id: 4,
+    id: 5,
     title: "Attendance Tracker",
     technologies: "React.js, LocalStorage / Firebase",
     smallDescription: "A complete attendance management system.",
@@ -67,7 +79,7 @@ const projectsData: ProjectItem[] = [
     previewUrl: "/",
   },
   {
-    id: 5,
+    id: 6,
     title: "Next.js Blog App",
     technologies: "Next.js, MongoDB, JWT Authentication",
     smallDescription: "Blog platform with authentication and CRUD.",
@@ -79,7 +91,7 @@ const projectsData: ProjectItem[] = [
     previewUrl: "/",
   },
   {
-    id: 6,
+    id: 7,
     title: "Full-stack Application",
     technologies: "MERN Stack",
     smallDescription: "Complete full-stack app showing CRUD operations.",

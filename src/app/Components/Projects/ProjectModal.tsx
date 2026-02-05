@@ -77,7 +77,7 @@ const ProjectModal: FC<ModalProps> = ({ isOpen, onClose, project }) => {
         <AnimatePresence>
             {/* BACKDROP */}
             <motion.div
-                className="fixed inset-0 bg-black/10 dark:bg-black/70 backdrop-blur-xl flex items-center justify-center z-[9999]"
+                className="fixed inset-0 bg-black/10 dark:bg-black/70 backdrop-blur-xl flex items-center justify-center z-9999"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -108,7 +108,7 @@ const ProjectModal: FC<ModalProps> = ({ isOpen, onClose, project }) => {
                     </button>
 
                     {/* TITLE */}
-                    <h2 className="text-3xl font-bold text-center bg-gradient-to-r from-blue-500 to-blue-700 dark:from-blue-300 dark:to-blue-500 bg-clip-text text-transparent mb-5">
+                    <h2 className="text-3xl font-bold text-center bg-linear-to-r from-blue-500 to-blue-700 dark:from-blue-300 dark:to-blue-500 bg-clip-text text-transparent mb-5">
                         {project.title}
                     </h2>
 

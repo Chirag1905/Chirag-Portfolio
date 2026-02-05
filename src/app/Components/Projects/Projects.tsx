@@ -13,8 +13,8 @@ interface ProjectItem {
   longDescription: string;
   image: string;
   tag: string[];
-  gitUrl: string;
-  previewUrl: string;
+  gitUrl?: string;
+  previewUrl?: string;
 }
 
 const projectsData: ProjectItem[] = [
@@ -45,6 +45,31 @@ const projectsData: ProjectItem[] = [
   },
   {
     id: 3,
+    title: "Edurelic – Education ERP Platform",
+    technologies: "React.js, Node.js, REST APIs, Role-Based Access, Scalable Architecture",
+    smallDescription: "A scalable ERP platform for schools, colleges, and universities.",
+    longDescription:
+      "Edurelic is a startup-driven, scalable education ERP platform designed to solve end-to-end school and campus management challenges. The system includes two major portals: Edurelic Admin and Edurelic School/Campus portals. Through the admin panel, Edurelic administrators can onboard and manage multiple school groups or campus groups. Once onboarded, groups such as school chains or university campuses can create and manage multiple institutions under a single umbrella.\n\nEach institution can configure academic years, courses, classes, exams, calendars, classroom notes, report cards, and student records within a unified platform. The application supports a robust role-based access control system for principals, professors, teachers, and administrative staff, ensuring secure and structured management workflows. Designed as a centralized ERP solution, Edurelic enables schools, colleges, and universities to manage their academic and administrative operations efficiently within one integrated web application.",
+    image: "/images/projects/edurelic.png",
+    tag: ["All", "Web", "ERP"],
+    gitUrl: "/",
+    previewUrl: "/",
+
+  },
+  {
+    id: 4,
+    title: "E-commerce Application",
+    technologies: "React.js, Context API, LocalStorage",
+    smallDescription: "A dynamic multi-page online shopping web app.",
+    longDescription:
+      "Developed a fully functional e-commerce application with product listings, filtering, product details page, cart management, and checkout workflow. Used global state management with Context API and real-time cart updates stored in LocalStorage. UI built with reusable responsive components and image previews.",
+    image: "/images/projects/3.png",
+    tag: ["All", "Web"],
+    gitUrl: "/",
+    previewUrl: "/",
+  },
+  {
+    id: 5,
     title: "The Experimental Brain",
     technologies: "React.js, Node.js, Express.js, MongoDB, JWT, OpenAI API, Less CSS, React Context API",
     smallDescription:
@@ -54,10 +79,10 @@ const projectsData: ProjectItem[] = [
     image: "/images/projects/teb.png",
     tag: ["All", "Web", "AI"],
     gitUrl: "/",
-    previewUrl: "/",
+    previewUrl: "https://ai-tool-for-school2.vercel.app/",
   },
   {
-    id: 4,
+    id: 6,
     title: "Next.js Portfolio",
     technologies: "Next.js, React Hook Form, Node Mailer",
     smallDescription: "A clean and elegant developer portfolio website.",
@@ -69,31 +94,56 @@ const projectsData: ProjectItem[] = [
     previewUrl: "https://chiragvadhavanaportfolio.vercel.app/",
   },
   {
-    id: 5,
-    title: "E-commerce Application",
-    technologies: "React.js, Context API, LocalStorage",
-    smallDescription: "A dynamic multi-page online shopping web app.",
-    longDescription:
-      "Developed a fully functional e-commerce application with product listings, filtering, product details page, cart management, and checkout workflow. Used global state management with Context API and real-time cart updates stored in LocalStorage. UI built with reusable responsive components and image previews.",
-    image: "/images/projects/2.png",
-    tag: ["All", "Web"],
-    gitUrl: "/",
-    previewUrl: "/",
-  },
-  {
-    id: 6,
+    id: 7,
     title: "React Chat App",
     technologies: "React.js, Firebase, Firestore, Authentication",
     smallDescription: "A real-time chat application using Firebase.",
     longDescription:
       "Created a modern chat app supporting real-time messaging using Firebase Firestore. Integrated authentication with Google Sign-In. Optimized message rendering, typing indicators, online users list, and secure user-specific chat storage. UI styled for a smooth messaging experience.",
-    image: "/images/projects/3.png",
+    image: "/images/projects/4.png",
     tag: ["All", "Web"],
     gitUrl: "https://github.com/Chirag1905/Chat-app.git",
     previewUrl: "/",
   },
   {
-    id: 7,
+    id: 8,
+    title: "HungryHub Food Delivery App",
+    technologies: "Next.js",
+    smallDescription: "Complete Landing page for Robotics.",
+    longDescription:
+      "A production-grade full-stack application showcasing authentication, role-based access control, protected routes, CRUD operations, form validation, and optimized API structure with MVC architecture. Designed scalable UI and secure backend with hashed passwords.",
+    image: "/images/projects/hungryhubs.png",
+    tag: ["All", "Web"],
+    gitUrl: "/",
+    previewUrl: "https://food-delivery-project-swart.vercel.app/",
+
+  },
+  {
+    id: 9,
+    title: "Robotics Landing Page",
+    technologies: "HTML, CSS, JS",
+    smallDescription: "Complete Landing page for Robotics.",
+    longDescription:
+      "A production-grade full-stack application showcasing authentication, role-based access control, protected routes, CRUD operations, form validation, and optimized API structure with MVC architecture. Designed scalable UI and secure backend with hashed passwords.",
+    image: "/images/projects/robotics.png",
+    tag: ["All", "Web"],
+    gitUrl: "/",
+    previewUrl: "https://robotics-techvein-org.vercel.app/",
+  },
+  {
+    id: 10,
+    title: "Sirius AI Solution Console",
+    technologies: "Next.js, AI Integrations, Generative AI, Secure Web Architecture",
+    smallDescription: "An AI-powered platform delivering intelligent business solutions.",
+    longDescription:
+      "Sirius AI Solution Console is a modern AI-driven platform designed to help businesses adopt and leverage Artificial Intelligence at scale. The application provides intelligent solutions built on Core AI, Generative AI, and DataBrain capabilities, enabling organizations to automate workflows, enhance decision-making, and unlock actionable insights from data.\n\nThe platform serves as a centralized console where businesses can explore AI-powered tools, generative content solutions, and data-driven intelligence modules tailored to real-world business use cases. Built with a scalable and production-ready architecture, the system focuses on performance, security, and extensibility, making it suitable for startups as well as enterprise-level organizations seeking to integrate AI into their operations.",
+    image: "/images/projects/siriusai.png",
+    tag: ["All", "Web", "AI"],
+    gitUrl: "/",
+    previewUrl: "https://siriusai.vercel.app/",
+  },
+  {
+    id: 11,
     title: "Full-stack Application",
     technologies: "MERN Stack",
     smallDescription: "Complete full-stack app showing CRUD operations.",

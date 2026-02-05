@@ -14,9 +14,9 @@ interface AchievementItem {
 }
 
 const achievementsList: AchievementItem[] = [
-  { metric: "Projects Delivered", value: "14", postfix: "+" },
+  { metric: "Projects Delivered", value: "24", postfix: "+" },
   { metric: "Clients & Teams Served", value: "6", postfix: "+" },
-  { metric: "Tech Stack Expertise", value: "8", postfix: "+" },
+  { metric: "Tech Stack Expertise", value: "15", postfix: "+" },
   { metric: "Years Experience", value: "3", postfix: "+" },
 ];
 

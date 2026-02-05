@@ -5,7 +5,8 @@ import axios from "axios";
 import { SubmitHandler, useForm } from "react-hook-form";
 import toast, { Toaster } from "react-hot-toast";
 import NeonButton from "../../utils/NeonButton";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
+import { SiFreelancer } from "react-icons/si";
 import Reveal from "@/app/utils/Reveal";
 
 interface ContactFormData {
@@ -59,24 +60,37 @@ const Contact: FC = () => {
         </h2>
       </Reveal>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 border-t border-black/10 dark:border-white/10 pt-10">
+      <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] gap-8 border-t border-black/10 dark:border-white/10 pt-10">
         {/* LEFT CONTENT */}
-        <div className="text-center sm:text-left">
-          <h5 className="text-lg sm:text-xl font-bold mb-3">
+        <div className="flex flex-col justify-center text-left">
+          <h5 className="text-lg sm:text-xl font-bold mb-4">
             Let&apos;s Connect
           </h5>
 
-          <p className="text-sm sm:text-base text-[#3f4346] text-justify dark:text-[#ADB7BE] mb-6 leading-relaxed">
+          <p className="text-sm sm:text-base text-justify text-[#3f4346] dark:text-[#ADB7BE] mb-4 leading-relaxed">
             I&apos;m always open to exciting collaborations and new opportunities in tech.
             Whether you have a project in mind, a question, or just want to connect —
             feel free to reach out. I&apos;ll do my best to get back to you!
           </p>
 
-          <div className="flex justify-center sm:justify-start gap-4">
+          <p className="text-sm sm:text-base text-justify text-[#3f4346] dark:text-[#ADB7BE] mb-4 leading-relaxed">
+            I specialize in building modern web applications with cutting-edge technologies.
+            From frontend development to full-stack solutions, I&apos;m passionate about
+            creating seamless user experiences and solving complex problems.
+          </p>
+
+          <p className="text-sm sm:text-base text-justify text-[#3f4346] dark:text-[#ADB7BE] mb-6 leading-relaxed">
+            Let&apos;s discuss your next big idea, explore potential collaborations, or
+            simply have a conversation about the latest in web development. I&apos;m here
+            to help bring your vision to life!
+          </p>
+
+          <div className="flex gap-4">
             <Link
               href="https://github.com/Chirag1905"
               target="_blank"
               aria-label="GitHub"
+              className="hover:scale-110 transition-transform duration-200"
             >
               <FaGithub size={36} />
             </Link>
@@ -85,10 +99,36 @@ const Contact: FC = () => {
               href="https://www.linkedin.com/in/chirag-vadhavana-7586ab225"
               target="_blank"
               aria-label="LinkedIn"
+              className="hover:scale-110 transition-transform duration-200"
             >
               <FaLinkedin size={36} />
             </Link>
+
+            <Link
+              href="https://www.instagram.com/chirag._.vadhavana/"
+              target="_blank"
+              aria-label="Instagram"
+              className="hover:scale-110 transition-transform duration-200"
+            >
+              <FaInstagram size={36} />
+            </Link>
+
+            <Link
+              href="https://www.freelancer.in/u/chiragvadhavana"
+              target="_blank"
+              aria-label="Freelancer"
+              className="hover:scale-110 transition-transform duration-200"
+            >
+              <SiFreelancer size={36} />
+            </Link>
           </div>
+        </div>
+
+        {/* PIPELINE DIVIDER */}
+        <div className="flex justify-center items-center">
+          <div
+            className="w-full h-px sm:w-px sm:h-full bg-linear-to-r sm:bg-linear-to-b from-transparent via-black/20 dark:via-white/20 to-transparent"
+          />
         </div>
 
         {/* RIGHT FORM */}

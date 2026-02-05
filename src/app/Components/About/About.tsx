@@ -1,4 +1,3 @@
-// About.tsx
 "use client";
 
 import { FC, JSX, useState, useTransition } from "react";
@@ -6,6 +5,7 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import Reveal from "@/app/utils/Reveal";
 import TabButton from "./TabButton";
+
 import {
   SiHtml5,
   SiCss3,
@@ -27,7 +27,6 @@ import {
   SiPostman,
   SiInsomnia,
   SiAxios,
-  SiAmazon,
   SiMongodb,
   SiMysql,
   SiPostgresql,
@@ -37,7 +36,9 @@ import {
   SiOpenai,
 } from "react-icons/si";
 import { FaAws } from "react-icons/fa";
+import { TbBrandZulip } from "react-icons/tb";
 
+/* ---------------- Types ---------------- */
 interface TabData {
   title: string;
   id: string;
@@ -54,7 +55,7 @@ const Card = ({
   icon: JSX.Element;
   link?: string;
 }) => {
-  const Wrapper = link ? "a" : "div";
+  const Wrapper: any = link ? "a" : "div";
 
   return (
     <Wrapper
@@ -104,77 +105,83 @@ const TAB_DATA: TabData[] = [
     id: "skills",
     content: (
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Card name="HTML" icon={<SiHtml5 />} />
-        <Card name="CSS" icon={<SiCss3 />} />
-        <Card name="SCSS" icon={<SiSass />} />
-        <Card name="LESS" icon={<SiLess />} />
-        <Card name="Bootstrap" icon={<SiBootstrap />} />
-        <Card name="Tailwind CSS" icon={<SiTailwindcss />} />
-        <Card name="JavaScript" icon={<SiJavascript />} />
-        <Card name="TypeScript" icon={<SiTypescript />} />
-        <Card name="React.js" icon={<SiReact />} />
-        <Card name="Next.js" icon={<SiNextdotjs />} />
-        <Card name="Node.js" icon={<SiNodedotjs />} />
-        <Card name="Express.js" icon={<SiExpress />} />
+        <Card name="HTML" icon={<SiHtml5 />} link="https://developer.mozilla.org/en-US/docs/Web/HTML" />
+        <Card name="CSS" icon={<SiCss3 />} link="https://developer.mozilla.org/en-US/docs/Web/CSS" />
+        <Card name="SCSS" icon={<SiSass />} link="https://sass-lang.com" />
+        <Card name="LESS" icon={<SiLess />} link="https://lesscss.org" />
+        <Card name="Bootstrap" icon={<SiBootstrap />} link="https://getbootstrap.com" />
+        <Card name="Tailwind CSS" icon={<SiTailwindcss />} link="https://tailwindcss.com" />
+        <Card name="JavaScript" icon={<SiJavascript />} link="https://developer.mozilla.org/en-US/docs/Web/JavaScript" />
+        <Card name="TypeScript" icon={<SiTypescript />} link="https://www.typescriptlang.org" />
+        <Card name="React.js" icon={<SiReact />} link="https://react.dev" />
+        <Card name="Next.js" icon={<SiNextdotjs />} link="https://nextjs.org" />
+        <Card name="Node.js" icon={<SiNodedotjs />} link="https://nodejs.org" />
+        <Card name="Express.js" icon={<SiExpress />} link="https://expressjs.com" />
       </div>
     ),
   },
+
   {
     title: "Technologies & Tools",
     id: "tools",
     content: (
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Card name="Git" icon={<SiGit />} />
-        <Card name="GitHub" icon={<SiGithub />} />
-        <Card name="Redux Toolkit" icon={<SiRedux />} />
-        <Card name="Context API" icon={<SiReact />} />
-        <Card name="Firebase" icon={<SiFirebase />} />
-        <Card name="Jira" icon={<SiJira />} />
-        <Card name="Postman" icon={<SiPostman />} />
-        <Card name="Insomnia" icon={<SiInsomnia />} />
-        <Card name="Axios" icon={<SiAxios />} />
+        <Card name="Git" icon={<SiGit />} link="https://git-scm.com" />
+        <Card name="GitHub" icon={<SiGithub />} link="https://github.com" />
+        <Card name="Redux Toolkit" icon={<SiRedux />} link="https://redux-toolkit.js.org" />
+        <Card name="Zustand" icon={<TbBrandZulip />} link="https://zustand.dev" />
+        <Card name="Context API" icon={<SiReact />} link="https://react.dev/reference/react/useContext" />
+        <Card name="Firebase" icon={<SiFirebase />} link="https://firebase.google.com" />
+        <Card name="Jira" icon={<SiJira />} link="https://www.atlassian.com/software/jira" />
+        <Card name="Postman" icon={<SiPostman />} link="https://www.postman.com" />
+        <Card name="Insomnia" icon={<SiInsomnia />} link="https://insomnia.rest" />
+        <Card name="Axios" icon={<SiAxios />} link="https://axios-http.com" />
       </div>
     ),
   },
+
   {
     title: "Cloud & DevOps",
     id: "cloud",
     content: (
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <Card name="AWS (Lambda, S3, Route53)" icon={<FaAws />} />
-        <Card name="Docker" icon={<SiDocker />} />
-        <Card name="Kubernetes" icon={<SiKubernetes />} />
-        <Card name="CI/CD Pipelines" icon={<SiGithub />} />
-        <Card name="Automation Scripts" icon={<SiGithub />} />
+        <Card name="AWS (Lambda, S3, Route53)" icon={<FaAws />} link="https://aws.amazon.com" />
+        <Card name="Docker" icon={<SiDocker />} link="https://www.docker.com" />
+        <Card name="Kubernetes" icon={<SiKubernetes />} link="https://kubernetes.io" />
+        <Card name="CI/CD Pipelines" icon={<SiGithub />} link="https://docs.github.com/en/actions" />
+        <Card name="Automation Scripts" icon={<SiGithub />} link="https://github.com/features/actions" />
       </div>
     ),
   },
+
   {
     title: "Databases & APIs",
     id: "db",
     content: (
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <Card name="MongoDB" icon={<SiMongodb />} />
-        <Card name="MySQL" icon={<SiMysql />} />
-        <Card name="PostgreSQL" icon={<SiPostgresql />} />
-        <Card name="REST APIs" icon={<SiExpress />} />
-        <Card name="GraphQL" icon={<SiGraphql />} />
+        <Card name="MongoDB" icon={<SiMongodb />} link="https://www.mongodb.com" />
+        <Card name="MySQL" icon={<SiMysql />} link="https://www.mysql.com" />
+        <Card name="PostgreSQL" icon={<SiPostgresql />} link="https://www.postgresql.org" />
+        <Card name="REST APIs" icon={<SiExpress />} link="https://restfulapi.net" />
+        <Card name="GraphQL" icon={<SiGraphql />} link="https://graphql.org" />
       </div>
     ),
   },
+
   {
     title: "AI & Automation",
     id: "ai",
     content: (
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <Card name="OpenAI / Gemini APIs" icon={<SiOpenai />} />
-        <Card name="GitHub Copilot" icon={<SiGithub />} />
-        <Card name="Cursor AI" icon={<SiGithub />} />
-        <Card name="Antigravity AI" icon={<SiGithub />} />
-        <Card name="Ollama (Local LLMs)" icon={<SiGithub />} />
+        <Card name="OpenAI / Gemini APIs" icon={<SiOpenai />} link="https://platform.openai.com" />
+        <Card name="GitHub Copilot" icon={<SiGithub />} link="https://github.com/features/copilot" />
+        <Card name="Cursor AI" icon={<SiGithub />} link="https://cursor.sh" />
+        <Card name="Antigravity AI" icon={<SiGithub />} link="https://antigravity.ai" />
+        <Card name="Ollama (Local LLMs)" icon={<SiGithub />} link="https://ollama.com" />
       </div>
     ),
   },
+
   {
     title: "Education",
     id: "education",
@@ -198,22 +205,33 @@ const TAB_DATA: TabData[] = [
       </div>
     ),
   },
+
   {
     title: "Certifications",
     id: "certifications",
     content: (
       <div className="space-y-4">
-        <Card name="ChatGPT Workshop – BrainyBeams" icon={<SiOpenai />} />
+        <Card
+          name="ChatGPT Workshop – BrainyBeams"
+          icon={<SiOpenai />}
+        // link="https://brainybeams.com"
+        />
         <Card
           name="JavaScript Algorithms & Data Structures – freeCodeCamp"
           icon={<SiJavascript />}
+        // link="https://www.freecodecamp.org"
         />
-        <Card name="PHP Programming Certification" icon={<SiGithub />} />
+        <Card
+          name="PHP Programming Certification"
+          icon={<SiGithub />}
+        // link="https://www.php.net"
+        />
       </div>
     ),
   },
 ];
 
+/* ---------------- Component ---------------- */
 const About: FC = () => {
   const [tab, setTab] = useState("skills");
   const [, startTransition] = useTransition();
@@ -221,7 +239,7 @@ const About: FC = () => {
   return (
     <section
       id="about"
-      className=" mx-auto my-24 px-6 py-16 rounded-4xl bg-white border border-gray-200 dark:bg-[#151515] dark:border-white/10"
+      className="mx-auto px-6 py-10 rounded-4xl bg-white border border-gray-200 dark:bg-[#151515] dark:border-white/10"
     >
       <Reveal>
         <h2 className="text-3xl sm:text-4xl font-bold text-center mb-14 text-gray-900 dark:text-white">
@@ -229,7 +247,6 @@ const About: FC = () => {
         </h2>
       </Reveal>
 
-      {/* IMAGE + TEXT */}
       <div className="grid md:grid-cols-2 gap-14 mb-20 items-center">
         <Reveal>
           <Image
@@ -237,27 +254,24 @@ const About: FC = () => {
             width={520}
             height={520}
             alt="About"
-            className="rounded-3xl w-full max-w-[520px] mx-auto
-              border border-gray-200 dark:border-white/10"
+            className="rounded-3xl w-full max-w-[520px] mx-auto border border-gray-200 dark:border-white/10"
           />
         </Reveal>
 
         <Reveal delay={0.1}>
-          <div className="max-w-xl space-y-4 leading-relaxed text-gray-700 dark:text-[#c7d7f5]">
+          <div className="max-w-xl space-y-4 text-gray-700 dark:text-[#c7d7f5]">
             <p>
               I’m a <b>MERN Stack Developer</b> with strong experience in building
               scalable, AI-powered, cloud-ready applications for real-world use cases.
               I focus on writing clean, maintainable code and designing systems that
               scale efficiently in production environments.
             </p>
-
             <p>
               My expertise spans full-stack development, backend architecture,
               REST & GraphQL APIs, database design, and performance optimization.
               I actively work with modern frameworks like <b>React</b> and <b>Next.js</b>
               to deliver fast, accessible, and visually polished user experiences.
             </p>
-
             <p>
               Beyond traditional development, I integrate AI solutions, automate
               workflows, and leverage cloud & DevOps tools such as <b>AWS</b>, <b>Docker</b>,
@@ -272,7 +286,6 @@ const About: FC = () => {
         </Reveal>
       </div>
 
-      {/* Tabs */}
       <Reveal>
         <div className="flex flex-wrap justify-center gap-3 mb-10">
           {TAB_DATA.map((t) => (
@@ -287,7 +300,6 @@ const About: FC = () => {
         </div>
       </Reveal>
 
-      {/* Content */}
       <AnimatePresence mode="wait">
         <motion.div
           key={tab}

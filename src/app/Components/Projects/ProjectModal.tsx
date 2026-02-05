@@ -30,8 +30,8 @@ interface Project {
     image: string;
     longDescription: string;
     technologies?: string;
-    gitUrl: string;
-    previewUrl: string;
+    gitUrl?: string;
+    previewUrl?: string;
 }
 
 interface ModalProps {
@@ -147,29 +147,33 @@ const ProjectModal: FC<ModalProps> = ({ isOpen, onClose, project }) => {
 
                         {/* ACTION BUTTONS */}
                         <div className="flex justify-center gap-4 pb-3">
-                            <Link
-                                href={project.gitUrl}
-                                target="_blank"
-                                className="px-5 py-2.5 text-sm font-semibold 
+                            {project.gitUrl && (
+                                <Link
+                                    href={project.gitUrl}
+                                    target="_blank"
+                                    className="px-5 py-2.5 text-sm font-semibold 
                 bg-gray-100 text-gray-900 border border-gray-300
                 hover:bg-gray-200
                 dark:bg-gray-900 dark:text-white dark:border-gray-700 
                 rounded-lg transition flex items-center gap-2"
-                            >
-                                <FaGithub className="w-5 h-5" />
-                                GitHub
-                            </Link>
+                                >
+                                    <FaGithub className="w-5 h-5" />
+                                    GitHub
+                                </Link>
+                            )}
 
-                            <Link
-                                href={project.previewUrl}
-                                target="_blank"
-                                className="px-5 py-2.5 text-sm font-semibold 
+                            {project.previewUrl && (
+                                <Link
+                                    href={project.previewUrl}
+                                    target="_blank"
+                                    className="px-5 py-2.5 text-sm font-semibold 
                 bg-blue-600 text-white hover:bg-blue-700 
                 rounded-lg transition flex items-center gap-2"
-                            >
-                                <FaExternalLinkAlt className="w-4 h-4" />
-                                Live Preview
-                            </Link>
+                                >
+                                    <FaExternalLinkAlt className="w-4 h-4" />
+                                    Live Preview
+                                </Link>
+                            )}
 
                             <button
                                 onClick={onClose}

@@ -11,8 +11,8 @@ interface ProjectCardProps {
   technologies: string;
   smallDescription: string;
   longDescription: string;
-  gitUrl: string;
-  previewUrl: string;
+  gitUrl?: string;
+  previewUrl?: string;
   onClickMore?: () => void;
 }
 
@@ -56,25 +56,29 @@ const ProjectCard: FC<ProjectCardProps> = ({
           className="absolute inset-0 z-10 flex items-center justify-center gap-6
             opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none group-hover:pointer-events-auto"
         >
-          <Link href={gitUrl} target="_blank">
-            <motion.div
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              className="h-12 w-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center hover:bg-white/20 transition-colors"
-            >
-              <CodeBracketIcon className="w-6 h-6 text-white" />
-            </motion.div>
-          </Link>
+          {gitUrl && (
+            <Link href={gitUrl} target="_blank">
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                className="h-12 w-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center hover:bg-white/20 transition-colors"
+              >
+                <CodeBracketIcon className="w-6 h-6 text-white" />
+              </motion.div>
+            </Link>
+          )}
 
-          <Link href={previewUrl} target="_blank">
-            <motion.div
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              className="h-12 w-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center hover:bg-white/20 transition-colors"
-            >
-              <EyeIcon className="w-6 h-6 text-white" />
-            </motion.div>
-          </Link>
+          {previewUrl && (
+            <Link href={previewUrl} target="_blank">
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                className="h-12 w-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center hover:bg-white/20 transition-colors"
+              >
+                <EyeIcon className="w-6 h-6 text-white" />
+              </motion.div>
+            </Link>
+          )}
         </div>
       </div>
 

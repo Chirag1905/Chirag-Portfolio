@@ -124,7 +124,8 @@ const Contact: FC = () => {
             </Link>
 
             <Link
-              href="https://www.freelancer.in/u/chiragvadhavana"
+              href="/Resume_Chirag.pdf"
+              download="Resume_Chirag.pdf"
               target="_blank"
               aria-label="Resume Download"
               className="hover:scale-110 transition-transform duration-200"

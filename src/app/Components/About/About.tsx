@@ -2,6 +2,7 @@
 
 import { FC, JSX, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import Reveal from "@/app/utils/Reveal";
 
 import {
@@ -35,17 +36,42 @@ import {
   SiGooglegemini,
   SiJfrogpipelines,
   SiOllama,
+  SiFastify,
+  SiNestjs,
+  SiBun,
+  SiDeno,
+  SiPrisma,
+  SiSequelize,
+  SiClaude,
 } from "react-icons/si";
-import { FaAws } from "react-icons/fa";
+import { FaAws, FaRocket } from "react-icons/fa";
 import { TbBrandZulip } from "react-icons/tb";
 
 /* ---------------- Card ---------------- */
-const Card = ({ name, icon }: { name: string; icon: JSX.Element }) => (
-  <div className="flex items-center gap-2.5 p-2.5 rounded-xl border border-black/20 dark:border-white/20 bg-white/60 dark:bg-black/30 hover:scale-105 transition-transform">
-    <span className="text-lg shrink-0">{icon}</span>
-    <span className="text-sm font-medium truncate">{name}</span>
-  </div>
-);
+const Card = ({
+  name,
+  icon,
+  link,
+}: {
+  name: string;
+  icon: JSX.Element;
+  link?: string;
+}) => {
+  const content = (
+    <div className="flex items-center gap-2.5 p-2.5 rounded-xl border border-black/20 dark:border-white/20 bg-white/60 dark:bg-black/30 hover:scale-105 transition-transform cursor-pointer">
+      <span className="text-lg shrink-0">{icon}</span>
+      <span className="text-sm font-medium truncate">{name}</span>
+    </div>
+  );
+
+  return link ? (
+    <Link href={link} target="_blank">
+      {content}
+    </Link>
+  ) : (
+    content
+  );
+};
 
 /* ---------------- Skill Group ---------------- */
 const SkillGroup = ({
@@ -152,7 +178,7 @@ const About: FC = () => {
         <Reveal delay={0.1}>
           <div className="space-y-4 text-sm sm:text-base text-gray-700 dark:text-[#c7d7f5]">
             <p>
-              I'm a <b>MERN Stack Developer</b> with strong experience in building
+              I&apos;m a <b>MERN Stack Developer</b> with strong experience in building
               scalable, AI-powered, cloud-ready applications for real-world use cases.
               I focus on writing clean, maintainable code and designing systems that
               scale efficiently in production environments.
@@ -202,60 +228,245 @@ const About: FC = () => {
         </div>
 
         {/* CONTENT BOX */}
-        <div className="rounded-b-3xl sm:rounded-tr-3xl sm:rounded-tl-3xl border border-black/20 dark:border-white/20 bg-white/60 dark:bg-black/15 backdrop-blur-xl p-4 sm:p-6 lg:p-8 -mt-[1px]">
+        <div className="rounded-b-3xl sm:rounded-tr-3xl sm:rounded-tl-3xl border border-black/20 dark:border-white/20 bg-white/60 dark:bg-black/15 backdrop-blur-xl p-4 sm:p-6 lg:p-8 -mt-px">
           {activeTab === "skills" && (
             <div className="grid lg:grid-cols-2 gap-6 sm:gap-8">
               <SkillGroup title="Frontend">
-                <Card name="HTML" icon={<SiHtml5 className="text-[#E34F26]" />} />
-                <Card name="CSS" icon={<SiCss3 className="text-[#1572B6]" />} />
-                <Card name="SCSS" icon={<SiSass className="text-[#CC6699]" />} />
-                <Card name="LESS" icon={<SiLess className="text-[#1D365D]" />} />
-                <Card name="Bootstrap" icon={<SiBootstrap className="text-[#7952B3]" />} />
-                <Card name="Tailwind CSS" icon={<SiTailwindcss className="text-[#38BDF8]" />} />
-                <Card name="JavaScript" icon={<SiJavascript className="text-[#F7DF1E]" />} />
-                <Card name="TypeScript" icon={<SiTypescript className="text-[#3178C6]" />} />
-                <Card name="React.js" icon={<SiReact className="text-[#61DBFB]" />} />
-                <Card name="Next.js" icon={<SiNextdotjs className="text-black dark:text-white" />} />
+                <Card
+                  name="HTML"
+                  icon={<SiHtml5 className="text-[#E34F26]" />}
+                  link="https://developer.mozilla.org/en-US/docs/Web/HTML"
+                />
+                <Card
+                  name="CSS"
+                  icon={<SiCss3 className="text-[#1572B6]" />}
+                  link="https://developer.mozilla.org/en-US/docs/Web/CSS"
+                />
+                <Card
+                  name="SCSS"
+                  icon={<SiSass className="text-[#CC6699]" />}
+                  link="https://sass-lang.com/documentation/"
+                />
+                <Card
+                  name="LESS"
+                  icon={<SiLess className="text-[#1D365D]" />}
+                  link="https://lesscss.org"
+                />
+                <Card
+                  name="Bootstrap"
+                  icon={<SiBootstrap className="text-[#7952B3]" />}
+                  link="https://getbootstrap.com/docs"
+                />
+                <Card
+                  name="Tailwind CSS"
+                  icon={<SiTailwindcss className="text-[#38BDF8]" />}
+                  link="https://tailwindcss.com/docs"
+                />
+                <Card
+                  name="JavaScript"
+                  icon={<SiJavascript className="text-[#F7DF1E]" />}
+                  link="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+                />
+                <Card
+                  name="TypeScript"
+                  icon={<SiTypescript className="text-[#3178C6]" />}
+                  link="https://www.typescriptlang.org/docs/"
+                />
+                <Card
+                  name="React.js"
+                  icon={<SiReact className="text-[#61DBFB]" />}
+                  link="https://react.dev"
+                />
+                <Card
+                  name="Next.js"
+                  icon={<SiNextdotjs className="text-black dark:text-white" />}
+                  link="https://nextjs.org/docs"
+                />
               </SkillGroup>
 
               <SkillGroup title="Backend & APIs">
-                <Card name="Node.js" icon={<SiNodedotjs className="text-[#68A063]" />} />
-                <Card name="Express.js" icon={<SiExpress className="text-gray-600 dark:text-gray-300" />} />
-                <Card name="REST APIs" icon={<SiExpress className="text-blue-500" />} />
-                <Card name="GraphQL" icon={<SiGraphql className="text-[#E10098]" />} />
+                <Card
+                  name="Node.js"
+                  icon={<SiNodedotjs className="text-[#68A063]" />}
+                  link="https://nodejs.org/en/docs/"
+                />
+                <Card
+                  name="Deno"
+                  icon={<SiDeno className="text-gray-600 dark:text-gray-300" />}
+                  link="https://deno.land/"
+                />
+                <Card
+                  name="Bun"
+                  icon={<SiBun className="text-gray-600 dark:text-gray-300" />}
+                  link="https://bun.sh/"
+                />
+                <Card
+                  name="NestJS"
+                  icon={<SiNestjs className="text-gray-600 dark:text-gray-300" />}
+                  link="https://nestjs.com/"
+                />
+                <Card
+                  name="Express.js"
+                  icon={<SiExpress className="text-gray-600 dark:text-gray-300" />}
+                  link="https://expressjs.com/"
+                />
+                <Card
+                  name="Fastify"
+                  icon={<SiFastify className="text-gray-600 dark:text-gray-300" />}
+                  link="https://www.fastify.io/"
+                />
+                <Card
+                  name="REST APIs"
+                  icon={<SiExpress className="text-blue-500" />}
+                  link="https://restfulapi.net/"
+                />
+                <Card
+                  name="GraphQL"
+                  icon={<SiGraphql className="text-[#E10098]" />}
+                  link="https://graphql.org/learn/"
+                />
               </SkillGroup>
 
               <SkillGroup title="State Management & Tools">
-                <Card name="Redux Toolkit" icon={<SiRedux className="text-[#764ABC]" />} />
-                <Card name="Zustand" icon={<TbBrandZulip className="text-[#2D8CFF]" />} />
-                <Card name="Git" icon={<SiGit className="text-[#F05032]" />} />
-                <Card name="GitHub" icon={<SiGithub className="text-black dark:text-white" />} />
-                <Card name="Jira" icon={<SiJira className="text-[#0052CC]" />} />
-                <Card name="Postman" icon={<SiPostman className="text-[#FF6C37]" />} />
-                <Card name="Insomnia" icon={<SiInsomnia className="text-[#5849BE]" />} />
-                <Card name="Axios" icon={<SiAxios className="text-[#5A29E4]" />} />
+                <Card
+                  name="Redux Toolkit"
+                  icon={<SiRedux className="text-[#764ABC]" />}
+                  link="https://redux-toolkit.js.org/introduction/getting-started"
+                />
+                <Card
+                  name="Zustand"
+                  icon={<TbBrandZulip className="text-[#2D8CFF]" />}
+                  link="https://docs.pmnd.rs/zustand/getting-started/introduction"
+                />
+                <Card
+                  name="Git"
+                  icon={<SiGit className="text-[#F05032]" />}
+                  link="https://git-scm.com/doc"
+                />
+                <Card
+                  name="GitHub"
+                  icon={<SiGithub className="text-black dark:text-white" />}
+                  link="https://docs.github.com/en"
+                />
+                <Card
+                  name="Jira"
+                  icon={<SiJira className="text-[#0052CC]" />}
+                  link="https://www.atlassian.com/software/jira"
+                />
+                <Card
+                  name="Postman"
+                  icon={<SiPostman className="text-[#FF6C37]" />}
+                  link="https://learning.postman.com/docs/introduction/overview/"
+                />
+                <Card
+                  name="Insomnia"
+                  icon={<SiInsomnia className="text-[#5849BE]" />}
+                  link="https://docs.insomnia.rest/"
+                />
+                <Card
+                  name="Axios"
+                  icon={<SiAxios className="text-[#5A29E4]" />}
+                  link="https://axios-http.com/docs/intro"
+                />
               </SkillGroup>
 
-              <SkillGroup title="Databases">
-                <Card name="MongoDB" icon={<SiMongodb className="text-[#47A248]" />} />
-                <Card name="MySQL" icon={<SiMysql className="text-[#00758F]" />} />
-                <Card name="PostgreSQL" icon={<SiPostgresql className="text-[#336791]" />} />
-                <Card name="Firebase" icon={<SiFirebase className="text-[#FFCA28]" />} />
+              <SkillGroup title="Databases & ORMs">
+                <Card
+                  name="MongoDB"
+                  icon={<SiMongodb className="text-[#47A248]" />}
+                  link="https://www.mongodb.com/docs/"
+                />
+                <Card
+                  name="MySQL"
+                  icon={<SiMysql className="text-[#00758F]" />}
+                  link="https://dev.mysql.com/doc/"
+                />
+                <Card
+                  name="PostgreSQL"
+                  icon={<SiPostgresql className="text-[#336791]" />}
+                  link="https://www.postgresql.org/docs/"
+                />
+                <Card
+                  name="Firebase"
+                  icon={<SiFirebase className="text-[#FFCA28]" />}
+                  link="https://firebase.google.com/docs"
+                />
+                <Card
+                  name="Prisma"
+                  icon={<SiPrisma className="text-[#2D8CFF]" />}
+                  link="https://prisma.io/docs"
+                />
+                <Card
+                  name="Sequelize"
+                  icon={<SiSequelize className="text-[#2D8CFF]" />}
+                  link="https://sequelize.org/docs"
+                />
               </SkillGroup>
 
               <SkillGroup title="Cloud & DevOps">
-                <Card name="AWS" icon={<FaAws className="text-[#FF9900]" />} />
-                <Card name="Docker" icon={<SiDocker className="text-[#2496ED]" />} />
-                <Card name="Kubernetes" icon={<SiKubernetes className="text-[#326CE5]" />} />
-                <Card name="CI/CD Pipelines" icon={<SiJfrogpipelines className="text-[#40BE46]" />} />
+                <Card
+                  name="AWS"
+                  icon={<FaAws className="text-[#FF9900]" />}
+                  link="https://docs.aws.amazon.com/"
+                />
+                <Card
+                  name="Docker"
+                  icon={<SiDocker className="text-[#2496ED]" />}
+                  link="https://docs.docker.com/"
+                />
+                <Card
+                  name="Kubernetes"
+                  icon={<SiKubernetes className="text-[#326CE5]" />}
+                  link="https://kubernetes.io/docs/home/"
+                />
+                <Card
+                  name="CI/CD Pipelines"
+                  icon={<SiJfrogpipelines className="text-[#40BE46]" />}
+                  link="https://jfrog.com/help/r/jfrog-pipelines-documentation"
+                />
               </SkillGroup>
 
               <SkillGroup title="AI & Automation">
-                <Card name="OpenAI" icon={<SiOpenai className="text-[#10A37F]" />} />
-                <Card name="Gemini" icon={<SiGooglegemini className="text-[#4285F4]" />} />
-                <Card name="GitHub Copilot" icon={<SiGithub className="text-black dark:text-white" />} />
-                <Card name="Cursor AI" icon={<SiGithub className="text-purple-400" />} />
-                <Card name="Ollama (Local LLMs)" icon={<SiOllama className="text-emerald-400" />} />
+                <Card
+                  name="OpenAI/Codex"
+                  icon={<SiOpenai className="text-[#10A37F]" />}
+                  link="https://platform.openai.com/docs/introduction"
+                />
+                <Card
+                  name="Gemini"
+                  icon={<SiGooglegemini className="text-[#4285F4]" />}
+                  link="https://ai.google.dev/docs"
+                />
+                <Card
+                  name="Antigravity"
+                  icon={<FaRocket className="text-black dark:text-white" />}
+                  link="https://antigravity.ai/"
+                />
+                <Card
+                  name="CursorAi"
+                  icon={<FaRocket className="text-black dark:text-white" />}
+                  link="https://cursor.sh/"
+                />
+                <Card
+                  name="Claude"
+                  icon={<SiClaude className="text-[#10A37F]" />}
+                  link="https://docs.anthropic.com/en/"
+                />
+                <Card
+                  name="GitHub Copilot"
+                  icon={<SiGithub className="text-black dark:text-white" />}
+                  link="https://docs.github.com/en/copilot"
+                />
+                <Card
+                  name="Cursor AI"
+                  icon={<SiGithub className="text-purple-400" />}
+                  link="https://www.cursor.com/"
+                />
+                <Card
+                  name="Ollama (Local LLMs)"
+                  icon={<SiOllama className="text-emerald-400" />}
+                  link="https://ollama.com/"
+                />
               </SkillGroup>
             </div>
           )}

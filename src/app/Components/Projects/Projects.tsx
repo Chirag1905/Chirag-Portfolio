@@ -26,12 +26,24 @@ const projectsData: ProjectItem[] = [
     longDescription:
       "Zuno AI is a privacy-focused AI chat assistant built with Next.js and powered by a locally hosted Large Language Model using Ollama. The application enables real-time conversational AI without relying on third-party cloud APIs, ensuring better data control and low-latency responses. It features a clean, responsive UI, smooth animations with Framer Motion, and optimized client-side rendering. A secure contact system is implemented using React Hook Form and NodeMailer. Zuno AI is designed as a scalable foundation for future enhancements such as chat history, prompt presets, and multi-model LLM support.",
     image: "/images/projects/1.png",
-    tag: ["All", "Web"],
+    tag: ["All", "Web", "AI"],
     gitUrl: "https://github.com/Chirag1905/zuno-ai.git",
-    previewUrl: "https://zuno-ten.vercel.app/",
+    previewUrl: "https://zuno-ten.vercel.app/signin",
   },
   {
     id: 2,
+    title: "Edurelic – Education ERP Platform",
+    technologies: "React.js, Node.js, REST APIs, Role-Based Access, Scalable Architecture",
+    smallDescription: "A scalable ERP platform for schools, colleges, and universities.",
+    longDescription:
+      "Edurelic is a startup-driven, scalable education ERP platform designed to solve end-to-end school and campus management challenges. The system includes two major portals: Edurelic Admin and Edurelic School/Campus portals. Through the admin panel, Edurelic administrators can onboard and manage multiple school groups or campus groups. Once onboarded, groups such as school chains or university campuses can create and manage multiple institutions under a single umbrella.\n\nEach institution can configure academic years, courses, classes, exams, calendars, classroom notes, report cards, and student records within a unified platform. The application supports a robust role-based access control system for principals, professors, teachers, and administrative staff, ensuring secure and structured management workflows. Designed as a centralized ERP solution, Edurelic enables schools, colleges, and universities to manage their academic and administrative operations efficiently within one integrated web application.",
+    image: "/images/projects/edurelic.png",
+    tag: ["All", "Web", "ERP"],
+    // gitUrl: "/",
+    previewUrl: "https://edurelic.com/signin",
+  },
+  {
+    id: 3,
     title: "Meteri – Wine & Restaurant Management Portal",
     technologies: "React.js, Tailwind CSS, Axios, LocalStorage",
     smallDescription:
@@ -40,24 +52,23 @@ const projectsData: ProjectItem[] = [
       "Meteri is a comprehensive wine and restaurant management platform that enables restaurants to independently create, customize, and manage their dishes, menus, wine lists, and beverage offerings—making them fully self-reliant on the system.\n\nThe platform supports a robust role-based access control (RBAC) system with three user roles: Admin, Restaurant, and Client, ensuring secure and permission-driven access across all modules. As part of the core functionality, the WineList module allows restaurants to curate and group wine recommendations based on customer segments and dining preferences. The MenuList module organizes dishes into structured courses such as Starters, Mains, and Desserts for improved clarity and usability, while the Beverage module manages additional drink offerings including soft drinks and non-alcoholic beverages.\n\nMy role involved leading the frontend development from scratch, delivering three major interfaces: an Admin Panel for overall platform management, a Restaurant Panel for menu and wine administration, and a Client View for browsing offerings. The application was built using React.js with Tailwind CSS for a clean, modern UI and Axios for efficient API communication, with data persistence handled via LocalStorage and Firebase.",
     image: "/images/projects/meteri.png",
     tag: ["All", "Web"],
-    gitUrl: "/",
-    previewUrl: "/",
-  },
-  {
-    id: 3,
-    title: "Edurelic – Education ERP Platform",
-    technologies: "React.js, Node.js, REST APIs, Role-Based Access, Scalable Architecture",
-    smallDescription: "A scalable ERP platform for schools, colleges, and universities.",
-    longDescription:
-      "Edurelic is a startup-driven, scalable education ERP platform designed to solve end-to-end school and campus management challenges. The system includes two major portals: Edurelic Admin and Edurelic School/Campus portals. Through the admin panel, Edurelic administrators can onboard and manage multiple school groups or campus groups. Once onboarded, groups such as school chains or university campuses can create and manage multiple institutions under a single umbrella.\n\nEach institution can configure academic years, courses, classes, exams, calendars, classroom notes, report cards, and student records within a unified platform. The application supports a robust role-based access control system for principals, professors, teachers, and administrative staff, ensuring secure and structured management workflows. Designed as a centralized ERP solution, Edurelic enables schools, colleges, and universities to manage their academic and administrative operations efficiently within one integrated web application.",
-    image: "/images/projects/edurelic.png",
-    tag: ["All", "Web", "ERP"],
-    gitUrl: "/",
-    previewUrl: "/",
-
+    // gitUrl: "/",
+    previewUrl: "https://yneandjoy.com/admin/login",
   },
   {
     id: 4,
+    title: "Next.js Portfolio",
+    technologies: "Next.js, React Hook Form, Node Mailer",
+    smallDescription: "A clean and elegant developer portfolio website.",
+    longDescription:
+      "A well-designed portfolio website built using Next.js with seamless page transitions, dark/light theme support, modular components, and optimized performance. Integrated React Hook Form with Node Mailer to enable functional contact form. Includes smooth framer-motion animations and a responsive UI across all devices.",
+    image: "/images/projects/1.png",
+    tag: ["All", "Web"],
+    gitUrl: "https://github.com/Chirag1905/Next-Portfolio.git",
+    previewUrl: "https://chiragvadhavanaportfolio.vercel.app/",
+  },
+  {
+    id: 5,
     title: "E-commerce Application",
     technologies: "React.js, Context API, LocalStorage",
     smallDescription: "A dynamic multi-page online shopping web app.",
@@ -65,11 +76,11 @@ const projectsData: ProjectItem[] = [
       "Developed a fully functional e-commerce application with product listings, filtering, product details page, cart management, and checkout workflow. Used global state management with Context API and real-time cart updates stored in LocalStorage. UI built with reusable responsive components and image previews.",
     image: "/images/projects/3.png",
     tag: ["All", "Web"],
-    gitUrl: "/",
-    previewUrl: "/",
+    // gitUrl: "/",
+    // previewUrl: "/",
   },
   {
-    id: 5,
+    id: 6,
     title: "The Experimental Brain",
     technologies: "React.js, Node.js, Express.js, MongoDB, JWT, OpenAI API, Less CSS, React Context API",
     smallDescription:
@@ -82,19 +93,31 @@ const projectsData: ProjectItem[] = [
     previewUrl: "https://ai-tool-for-school2.vercel.app/",
   },
   {
-    id: 6,
-    title: "Next.js Portfolio",
-    technologies: "Next.js, React Hook Form, Node Mailer",
-    smallDescription: "A clean and elegant developer portfolio website.",
+    id: 7,
+    title: "Sirius AI Solution Console",
+    technologies: "Next.js, AI Integrations, Generative AI, Secure Web Architecture",
+    smallDescription: "An AI-powered platform delivering intelligent business solutions.",
     longDescription:
-      "A well-designed portfolio website built using Next.js with seamless page transitions, dark/light theme support, modular components, and optimized performance. Integrated React Hook Form with Node Mailer to enable functional contact form. Includes smooth framer-motion animations and a responsive UI across all devices.",
-    image: "/images/projects/1.png",
-    tag: ["All", "Web"],
-    gitUrl: "https://github.com/Chirag1905/Next-Portfolio.git",
-    previewUrl: "https://chiragvadhavanaportfolio.vercel.app/",
+      "Sirius AI Solution Console is a modern AI-driven platform designed to help businesses adopt and leverage Artificial Intelligence at scale. The application provides intelligent solutions built on Core AI, Generative AI, and DataBrain capabilities, enabling organizations to automate workflows, enhance decision-making, and unlock actionable insights from data.\n\nThe platform serves as a centralized console where businesses can explore AI-powered tools, generative content solutions, and data-driven intelligence modules tailored to real-world business use cases. Built with a scalable and production-ready architecture, the system focuses on performance, security, and extensibility, making it suitable for startups as well as enterprise-level organizations seeking to integrate AI into their operations.",
+    image: "/images/projects/siriusai.png",
+    tag: ["All", "Web", "AI"],
+    // gitUrl: "/",
+    previewUrl: "https://siriusai.vercel.app/",
   },
   {
-    id: 7,
+    id: 8,
+    title: "Salsa People",
+    technologies: "Next.js, AI Integrations, Generative AI, Secure Web Architecture",
+    smallDescription: "An AI-powered platform delivering intelligent business solutions.",
+    longDescription:
+      "Sirius AI Solution Console is a modern AI-driven platform designed to help businesses adopt and leverage Artificial Intelligence at scale. The application provides intelligent solutions built on Core AI, Generative AI, and DataBrain capabilities, enabling organizations to automate workflows, enhance decision-making, and unlock actionable insights from data.\n\nThe platform serves as a centralized console where businesses can explore AI-powered tools, generative content solutions, and data-driven intelligence modules tailored to real-world business use cases. Built with a scalable and production-ready architecture, the system focuses on performance, security, and extensibility, making it suitable for startups as well as enterprise-level organizations seeking to integrate AI into their operations.",
+    image: "/images/projects/salsa.png",
+    tag: ["All", "Web", "AI"],
+    // gitUrl: "/",
+    previewUrl: "https://app.salsapeople.ch/",
+  },
+  {
+    id: 9,
     title: "React Chat App",
     technologies: "React.js, Firebase, Firestore, Authentication",
     smallDescription: "A real-time chat application using Firebase.",
@@ -103,10 +126,10 @@ const projectsData: ProjectItem[] = [
     image: "/images/projects/4.png",
     tag: ["All", "Web"],
     gitUrl: "https://github.com/Chirag1905/Chat-app.git",
-    previewUrl: "/",
+    // previewUrl: "/",
   },
   {
-    id: 8,
+    id: 10,
     title: "HungryHub Food Delivery App",
     technologies: "Next.js",
     smallDescription: "Complete Landing page for Robotics.",
@@ -119,7 +142,7 @@ const projectsData: ProjectItem[] = [
 
   },
   {
-    id: 9,
+    id: 11,
     title: "Robotics Landing Page",
     technologies: "HTML, CSS, JS",
     smallDescription: "Complete Landing page for Robotics.",
@@ -130,20 +153,9 @@ const projectsData: ProjectItem[] = [
     gitUrl: "/",
     previewUrl: "https://robotics-techvein-org.vercel.app/",
   },
+
   {
-    id: 10,
-    title: "Sirius AI Solution Console",
-    technologies: "Next.js, AI Integrations, Generative AI, Secure Web Architecture",
-    smallDescription: "An AI-powered platform delivering intelligent business solutions.",
-    longDescription:
-      "Sirius AI Solution Console is a modern AI-driven platform designed to help businesses adopt and leverage Artificial Intelligence at scale. The application provides intelligent solutions built on Core AI, Generative AI, and DataBrain capabilities, enabling organizations to automate workflows, enhance decision-making, and unlock actionable insights from data.\n\nThe platform serves as a centralized console where businesses can explore AI-powered tools, generative content solutions, and data-driven intelligence modules tailored to real-world business use cases. Built with a scalable and production-ready architecture, the system focuses on performance, security, and extensibility, making it suitable for startups as well as enterprise-level organizations seeking to integrate AI into their operations.",
-    image: "/images/projects/siriusai.png",
-    tag: ["All", "Web", "AI"],
-    gitUrl: "/",
-    previewUrl: "https://siriusai.vercel.app/",
-  },
-  {
-    id: 11,
+    id: 12,
     title: "Full-stack Application",
     technologies: "MERN Stack",
     smallDescription: "Complete full-stack app showing CRUD operations.",
@@ -151,8 +163,8 @@ const projectsData: ProjectItem[] = [
       "A production-grade full-stack MERN application showcasing authentication, role-based access control, protected routes, CRUD operations, form validation, and optimized API structure with MVC architecture. Designed scalable UI and secure backend with hashed passwords.",
     image: "/images/projects/6.png",
     tag: ["All", "Web"],
-    gitUrl: "/",
-    previewUrl: "/",
+    // gitUrl: "/",
+    // previewUrl: "/",
   },
 ];
 
@@ -200,7 +212,7 @@ const Projects: FC = () => {
     shadow-sm dark:shadow-[0_0_10px_rgba(0,0,0,0.4)]
     transition"
         >
-          {["All", "Web", "Mobile"].map((name) => (
+          {["All", "Web", "AI", "ERP"].map((name) => (
             <ProjectTag
               key={name}
               onClick={() => handleTagChange(name)}

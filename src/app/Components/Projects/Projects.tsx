@@ -25,25 +25,13 @@ const projectsData: ProjectItem[] = [
     smallDescription: "An AI chat assistant powered by a local LLM using Ollama.",
     longDescription:
       "Zuno AI is a privacy-focused AI chat assistant built with Next.js and powered by a locally hosted Large Language Model using Ollama. The application enables real-time conversational AI without relying on third-party cloud APIs, ensuring better data control and low-latency responses. It features a clean, responsive UI, smooth animations with Framer Motion, and optimized client-side rendering. A secure contact system is implemented using React Hook Form and NodeMailer. Zuno AI is designed as a scalable foundation for future enhancements such as chat history, prompt presets, and multi-model LLM support.",
-    image: "/images/projects/1.png",
+    image: "/images/projects/zunoai.png",
     tag: ["All", "Web", "AI"],
     gitUrl: "https://github.com/Chirag1905/zuno-ai.git",
     previewUrl: "https://zuno-ten.vercel.app/signin",
   },
   {
     id: 2,
-    title: "Edurelic – Education ERP Platform",
-    technologies: "React.js, Node.js, REST APIs, Role-Based Access, Scalable Architecture",
-    smallDescription: "A scalable ERP platform for schools, colleges, and universities.",
-    longDescription:
-      "Edurelic is a startup-driven, scalable education ERP platform designed to solve end-to-end school and campus management challenges. The system includes two major portals: Edurelic Admin and Edurelic School/Campus portals. Through the admin panel, Edurelic administrators can onboard and manage multiple school groups or campus groups. Once onboarded, groups such as school chains or university campuses can create and manage multiple institutions under a single umbrella.\n\nEach institution can configure academic years, courses, classes, exams, calendars, classroom notes, report cards, and student records within a unified platform. The application supports a robust role-based access control system for principals, professors, teachers, and administrative staff, ensuring secure and structured management workflows. Designed as a centralized ERP solution, Edurelic enables schools, colleges, and universities to manage their academic and administrative operations efficiently within one integrated web application.",
-    image: "/images/projects/edurelic.png",
-    tag: ["All", "Web", "ERP"],
-    // gitUrl: "/",
-    previewUrl: "https://edurelic.com/signin",
-  },
-  {
-    id: 3,
     title: "Meteri – Wine & Restaurant Management Portal",
     technologies: "React.js, Tailwind CSS, Axios, LocalStorage",
     smallDescription:
@@ -54,6 +42,18 @@ const projectsData: ProjectItem[] = [
     tag: ["All", "Web"],
     // gitUrl: "/",
     previewUrl: "https://yneandjoy.com/admin/login",
+  },
+  {
+    id: 3,
+    title: "Edurelic – Education ERP Platform",
+    technologies: "React.js, Node.js, REST APIs, Role-Based Access, Scalable Architecture",
+    smallDescription: "A scalable ERP platform for schools, colleges, and universities.",
+    longDescription:
+      "Edurelic is a startup-driven, scalable education ERP platform designed to solve end-to-end school and campus management challenges. The system includes two major portals: Edurelic Admin and Edurelic School/Campus portals. Through the admin panel, Edurelic administrators can onboard and manage multiple school groups or campus groups. Once onboarded, groups such as school chains or university campuses can create and manage multiple institutions under a single umbrella.\n\nEach institution can configure academic years, courses, classes, exams, calendars, classroom notes, report cards, and student records within a unified platform. The application supports a robust role-based access control system for principals, professors, teachers, and administrative staff, ensuring secure and structured management workflows. Designed as a centralized ERP solution, Edurelic enables schools, colleges, and universities to manage their academic and administrative operations efficiently within one integrated web application.",
+    image: "/images/projects/edurelic.png",
+    tag: ["All", "Web", "ERP"],
+    // gitUrl: "/",
+    previewUrl: "https://edurelic.com/signin",
   },
   {
     id: 4,

@@ -50,7 +50,7 @@ const projectsData: ProjectItem[] = [
     smallDescription: "A scalable ERP platform for schools, colleges, and universities.",
     longDescription:
       "Edurelic is a startup-driven, scalable education ERP platform designed to solve end-to-end school and campus management challenges. The system includes two major portals: Edurelic Admin and Edurelic School/Campus portals. Through the admin panel, Edurelic administrators can onboard and manage multiple school groups or campus groups. Once onboarded, groups such as school chains or university campuses can create and manage multiple institutions under a single umbrella.\n\nEach institution can configure academic years, courses, classes, exams, calendars, classroom notes, report cards, and student records within a unified platform. The application supports a robust role-based access control system for principals, professors, teachers, and administrative staff, ensuring secure and structured management workflows. Designed as a centralized ERP solution, Edurelic enables schools, colleges, and universities to manage their academic and administrative operations efficiently within one integrated web application.",
-    image: "/images/projects/edurelic.png",
+    image: "/images/projects/noImage.png",
     tag: ["All", "Web", "ERP"],
     // gitUrl: "/",
     previewUrl: "https://edurelic.com/signin",
